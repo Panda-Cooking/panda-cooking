@@ -5,6 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
   }
   :root{
     --Color-brand-1:#ff8787
@@ -19,4 +21,13 @@ export const GlobalStyle = createGlobalStyle`
   button{
     cursor: pointer;
   }
+
+  img{
+    max-width: 100%;
+  }
+
+  body{
+    font-family: 'Inter', sans-serif;
+  }
+
 `
