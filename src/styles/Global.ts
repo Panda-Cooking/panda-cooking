@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -12,10 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     --Color-brand-1:#ff8787;
     --Color-brand-2:#ffc9c9;
     --Color-brand-3:#fff5f5;
+    --Color-border-0:#C92A2A;
     --Color-gray-0:#f8f9fa;
     --Color-gray-1:#dee2e6;
     --Color-gray-2:#adb5bd;
     --Color-gray-3:#343a40;
+    --Color-white:#FFF;
   }
 
   button{
@@ -30,4 +32,4 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
   }
 
-`
+`;
