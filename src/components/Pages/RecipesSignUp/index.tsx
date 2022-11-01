@@ -2,8 +2,8 @@ import React from 'react'
 
 // import { Container } from './styles';
 
-const RecipesSingUp = () => {
+const RecipesSignUp = () => {
   return <div>RecipesSingUp</div>
 }
 
-export default RecipesSingUp
+export default RecipesSignUp
