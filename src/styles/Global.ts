@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --Color-gray-2:#adb5bd;
     --Color-gray-3:#343a40;
     --Color-white:#FFF;
+
   }
 
   button{
