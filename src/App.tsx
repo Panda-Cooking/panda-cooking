@@ -1,6 +1,6 @@
-import { ToastContainer } from 'react-toastify'
-import Router from './Router'
-import { Container } from './styles/app'
+import { ToastContainer } from "react-toastify";
+import Router from "./Router";
+import { Container } from "./styles/app";
 
 function App() {
   return (
@@ -12,11 +12,11 @@ function App() {
         closeOnClick={true}
         pauseOnHover={true}
         draggable={true}
-        toastStyle={{ backgroundColor: 'black', color: 'white' }}
+        toastStyle={{ backgroundColor: "black", color: "white" }}
       />
       <Router />
     </Container>
-  )
+  );
 }
 
-export default App
+export default App;
