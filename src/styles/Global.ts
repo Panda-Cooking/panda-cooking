@@ -16,6 +16,8 @@ export const GlobalStyle = createGlobalStyle`
     --Color-gray-1:#dee2e6;
     --Color-gray-2:#adb5bd;
     --Color-gray-3:#343a40;
+    --Color-white:#FFF;
+
   }
 
   button{
@@ -29,4 +31,5 @@ export const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Inter', sans-serif;
   }
+
 `;
