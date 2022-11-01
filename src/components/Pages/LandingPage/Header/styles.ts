@@ -6,7 +6,10 @@ export const HeaderStyled = styled.header`
 
   background-color: var(--Color-brand-2);
 
-  & > div {
+  position: relative;
+  z-index: 20;
+
+  .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,11 +19,32 @@ export const HeaderStyled = styled.header`
     padding-right: 16px;
   }
 
-  & > div > button {
+  .container > .buttons-desktop {
+    display: none;
+  }
+
+  .container > .buttons-desktop > a {
+    background-color: var(--Color-brand-1);
+    color: var(--Color-gray-3);
+    padding: 4px;
+    border-radius: 4px;
+  }
+
+  .menu-hamburguer {
     border: none;
     background: none;
     font-size: 24px;
     color: var(--Color-gray-3);
+  }
+
+  @media (min-width: 768px) {
+    .menu-hamburguer {
+      display: none;
+    }
+    .container > .buttons-desktop {
+      display: flex;
+      gap: 16px;
+    }
   }
 
   @media (min-width: 1024px) {

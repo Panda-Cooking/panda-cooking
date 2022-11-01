@@ -27,7 +27,7 @@ export const Footer = () => {
           </li>
           <li className="founder-card">
             <img src={avatarImg} alt="" />
-            <Heading3>Carlos Jr.</Heading3>
+            <Heading3>Felipe Bulhões</Heading3>
             <div>
               <Link to="/">
                 <TfiLinkedin />
@@ -39,7 +39,19 @@ export const Footer = () => {
           </li>
           <li className="founder-card">
             <img src={avatarImg} alt="" />
-            <Heading3>Carlos Jr.</Heading3>
+            <Heading3>Victor Henrique</Heading3>
+            <div>
+              <Link to="">
+                <TfiLinkedin />
+              </Link>
+              <Link to="/">
+                <BsGithub />
+              </Link>
+            </div>
+          </li>
+          <li className="founder-card">
+            <img src={avatarImg} alt="" />
+            <Heading3>Matheus Ferreira</Heading3>
             <div>
               <Link to="/">
                 <TfiLinkedin />
@@ -51,7 +63,7 @@ export const Footer = () => {
           </li>
           <li className="founder-card">
             <img src={avatarImg} alt="" />
-            <Heading3>Carlos Jr.</Heading3>
+            <Heading3>Eduardo Perondi</Heading3>
             <div>
               <Link to="/">
                 <TfiLinkedin />
@@ -63,7 +75,7 @@ export const Footer = () => {
           </li>
           <li className="founder-card">
             <img src={avatarImg} alt="" />
-            <Heading3>Carlos Jr.</Heading3>
+            <Heading3>Mateo Gaboardi</Heading3>
             <div>
               <Link to="/">
                 <TfiLinkedin />

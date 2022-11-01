@@ -6,7 +6,7 @@ export const FooterStyled = styled.footer`
 
   .container {
     min-height: 320px;
-    padding: 0 16px;
+    padding: 32px 16px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -21,8 +21,8 @@ export const FooterStyled = styled.footer`
     width: 0px;
   }
   .founder-card {
-    min-width: 208px;
-    width: 208px;
+    min-width: 232px;
+    width: 232px;
 
     padding: 16px;
 
@@ -51,7 +51,7 @@ export const FooterStyled = styled.footer`
     .container {
       max-width: 1024px;
       margin: 0 auto;
-      padding: 0;
+      padding: 32px 0;
     }
     .list-founders::-webkit-scrollbar {
       height: 10px;
