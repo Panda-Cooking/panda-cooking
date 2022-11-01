@@ -53,5 +53,4 @@ const SignIn = () => {
     </LoginStyle>
   )
 }
-
-export default SignIn
+export default SignIn;

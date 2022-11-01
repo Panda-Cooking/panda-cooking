@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 // import { Container } from './styles';
 
 const SignUp = () => {
-  return <div>SingUp</div>
-}
+  return <div>SingUp</div>;
+};
 
-export default SignUp
+export default SignUp;
+
