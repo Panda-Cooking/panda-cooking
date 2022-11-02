@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { Heading3, Text1 } from "../../../../styles/typography";
 import { SectionPresentationsStyled } from "./styles";
+import pandaLogo from "../../../../assets/img/ilustração.png";
 
 export const SectionPresentations = () => {
   return (
     <SectionPresentationsStyled>
       <div className="container">
+        <img src={pandaLogo} alt="logo" />
         <div className="box-infos">
           <Text1 color="white">
             Lorem Ipsum is simply dummy text of the printing and typesetting
