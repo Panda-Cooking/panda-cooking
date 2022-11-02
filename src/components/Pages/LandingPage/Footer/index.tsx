@@ -4,6 +4,7 @@ import { BsGithub } from "react-icons/bs";
 import { TfiLinkedin } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 import avatarImg from "../../../../assets/img/avatar.png";
+import { HorizontalScrolll } from "../HorizontalScroll";
 
 export const Footer = () => {
   return (
@@ -12,7 +13,7 @@ export const Footer = () => {
         <Heading2 color="white">Sobre nos</Heading2>
         <Heading3 color="white">Grupo 4</Heading3>
 
-        <ul className="list-founders">
+        <HorizontalScrolll height={232}>
           <li className="founder-card">
             <img src={avatarImg} alt="" />
             <Heading3>Carlos Jr.</Heading3>
@@ -85,7 +86,7 @@ export const Footer = () => {
               </Link>
             </div>
           </li>
-        </ul>
+        </HorizontalScrolll>
       </div>
     </FooterStyled>
   );

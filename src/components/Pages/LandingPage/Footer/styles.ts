@@ -12,14 +12,6 @@ export const FooterStyled = styled.footer`
     gap: 16px;
   }
 
-  .list-founders {
-    display: flex;
-    overflow-x: scroll;
-    gap: 32px;
-  }
-  .list-founders::-webkit-scrollbar {
-    width: 0px;
-  }
   .founder-card {
     min-width: 232px;
     width: 232px;
@@ -52,17 +44,6 @@ export const FooterStyled = styled.footer`
       max-width: 1024px;
       margin: 0 auto;
       padding: 32px 0;
-    }
-    .list-founders::-webkit-scrollbar {
-      height: 10px;
-    }
-    .list-founders::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px var(--Color-gray-2);
-      border-radius: 10px;
-    }
-    .list-founders::-webkit-scrollbar-thumb {
-      background: var(--Color-brand-1);
-      border-radius: 10px;
     }
   }
 `;
