@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const RecipesListContainer = styled.div`
   margin-top: 26px;
@@ -51,6 +51,10 @@ export const RecipesListContainer = styled.div`
         justify-content: center;
         align-items: center;
         gap: 3px;
+
+        h3 {
+          text-align: center;
+        }
       }
     }
 
