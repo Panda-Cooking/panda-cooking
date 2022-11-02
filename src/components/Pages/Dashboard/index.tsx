@@ -1,6 +1,5 @@
 import React from 'react';
 import { SiFoodpanda } from 'react-icons/si';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsUpload } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/Ai';
 import { Heading2, Heading3, Text2 } from '../../../styles/typography';
@@ -8,8 +7,14 @@ import { Heading2, Heading3, Text2 } from '../../../styles/typography';
 import { Container } from './styles';
 import RecipesList from './RecipesList';
 import { Link } from 'react-router-dom';
+import { useUserContext } from '../../../contexts/AuthContext';
+import MenuHamburguer from './MenuHamburguer';
+import { useRecipeContext } from '../../../contexts/RecipesContext';
 
 const Dashboard = () => {
+  const { user, logoutFunction } = useUserContext();
+  const { getFilteredRecipes } = useRecipeContext();
+
   return (
     <Container>
       <header>
@@ -17,8 +22,11 @@ const Dashboard = () => {
           <SiFoodpanda size={45} className='mainPandaLogo'></SiFoodpanda>
           <Heading2>Panda Cooking</Heading2>
         </div>
-        <GiHamburgerMenu size={30}></GiHamburgerMenu>
-        {/*Renderização condicional se o usuario estiver logado ou não*/}
+        {user ? (
+          <MenuHamburguer logoutFunction={logoutFunction}></MenuHamburguer>
+        ) : (
+          <Link to='/'>Login</Link>
+        )}
       </header>
       <main>
         <section className='filterSection'>
@@ -42,12 +50,17 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <ul>
+          <ul
+            onClick={(e) =>
+              getFilteredRecipes((e.target as HTMLTextAreaElement).innerText)
+            }
+          >
+            <li className='filterAll'>Todos</li>
             <li>Bolos</li>
             <li>Carnes</li>
             <li>Aves</li>
             <li>Peixes</li>
-            <li>Sobremesas</li>
+            <li>Sobremesa</li>
             <li>Massas</li>
             <li>Saladas</li>
             <li>Lanches</li>
