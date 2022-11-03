@@ -19,7 +19,7 @@ export const Header = () => {
         <Heading3>Panda Cooking</Heading3>
 
         <div className="buttons-desktop">
-          <Link to="/">Login</Link>
+          <Link to="/signIn">Login</Link>
           <Link to="/signUp">Registro</Link>
         </div>
 
