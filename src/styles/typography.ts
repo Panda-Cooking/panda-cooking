@@ -34,4 +34,11 @@ const Text2 = styled.p`
   color: var(--Color-${({ color = "gray-3" }: iPropsTypography) => color});
 `;
 
-export { Heading1, Heading2, Heading3, Text1, Text2 };
+
+const Heading3Span = styled.span`
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--Color-${({ color = "gray-3" }: iPropsTypography) => color});
+`;
+
+export { Heading1, Heading2, Heading3, Text1, Text2, Heading3Span };
