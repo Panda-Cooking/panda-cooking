@@ -1,12 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import { Container, Main } from './styles'
+import { BiSend } from 'react-icons/bi'
 import HeaderMenu from '../../HeaderMenu'
+import api from '../../../services/api'
+import { iRecipeComment, iRecipeIngredients, iRecipePreparation } from '../../../contexts/RecipesContext'
 
 // import { Container, Header } from './styles';
 
+interface iRecipe{
+  name: string,
+  images: string[] | undefined,
+  time: string,
+  portions: string,
+  category: string,
+  Ingredients: iRecipeIngredients[],
+  coment: iRecipeComment[],
+  preparation: iRecipePreparation[],
+  userId: number,
+  id: number
+}
 
 const RecipesPage = () => {
+
+  const id = 2
+  const [recipe, setRecipe] = useState<iRecipe | null>(null)
+  const [ingredients, setIngredients] = useState<iRecipeIngredients[]>([])
+  const [preparations, setPreparation] = useState<iRecipePreparation[]>([])
+  const [comments, setComent] = useState<iRecipeComment[]>([])
+
+  useEffect(() =>{
+    const reciveEspecificRecipe = async () =>{
+      try {
+        const { data } : any = await api.get<iRecipe>(`/recipes?id=${id}`)
+        setRecipe(data[0])
+        setIngredients(data[0].Ingredients)
+        setPreparation(data[0].preparation)
+        setComent(data[0].comment)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    reciveEspecificRecipe()
+  }, [])
+
 
   return (
       <Container>
@@ -34,35 +71,34 @@ const RecipesPage = () => {
               <div>
                 <h2>Ingredientes</h2>
                 <ul>
-                  <li>Ingrediente 1</li>
-                  <li>Ingrediente 2</li>
-                  <li>Ingrediente 3</li>
-                  <li>Ingrediente 4</li>
+                  {
+                    ingredients.map((ingredient, index) => <li key={index}>{`${ingredient.qtd + ' ' + ingredient.name}`}</li>)  
+                  }
                 </ul>
               </div>
               <div>
                 <h2>Modo de preparo</h2>
                 <ol>
-                  <li>Modo de preparo</li>
-                  <li>Modo de preparo</li>
-                  <li>Modo de preparo</li>
-                  <li>Modo de preparo</li>
-                  <li>Modo de preparo</li>
+                  { 
+                    preparations.map((preparation, index) => <li key={index}>{preparation.description}</li>)  
+                  }
                 </ol>
               </div>
             </section>
             <section className="thirdRecipeSection">
               <h2>Comentarios</h2>
               <div className="comentsContainer">
-                <BsPerson size={25}/>
                 <div className="coment">
-                  <p>
-                    Lorem Ipsum is simply dummy 
-                    text of the printing and typeset
-                    ting industry. Lorem Ipsum has 
-                    been the industry's standard 
-                    dummy text ever since the 1500s
-                  </p>
+                  <ul>
+                    {
+                      comments.map((comment, index) => 
+                        <li key={index}>
+                          <BsPerson size={25}/>
+                          <p>{comment.description}</p>
+                        </li>
+                      )
+                    }
+                  </ul>
                 </div>
                 <div>
                   <p>
@@ -70,7 +106,18 @@ const RecipesPage = () => {
                   </p>
                 </div>
               </div>
-              <textarea placeholder="Adcionar comentario..."></textarea>
+              <div className='addComentContainer'>
+                <textarea placeholder="Adcionar comentario..."></textarea>
+                <button>
+                  <BiSend style={{
+                    position: 'absolute',
+                    top: '0px',
+                    right: '0px',
+                  }}
+                    size="20px"
+                  />
+                </button>
+              </div>
             </section>
           </Main>
       </Container>
