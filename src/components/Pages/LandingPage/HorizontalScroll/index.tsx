@@ -1,5 +1,5 @@
-import HorizontalScroll from "react-scroll-horizontal";
-import { HorizontalScrollContainer } from "./styles";
+import HorizontalScroll from 'react-scroll-horizontal';
+import { HorizontalScrollContainer } from './styles';
 
 interface iPropsHorizontalScroll {
   children: React.ReactNode;

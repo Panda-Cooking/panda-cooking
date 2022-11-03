@@ -28,6 +28,7 @@ interface iRecipeComment {
 
 interface iRecipe {
   name: string;
+  images: string[];
   time: string;
   portions: string;
   category: string;
@@ -41,6 +42,7 @@ interface iRecipe {
 interface iRecipeContext {
   recipes: iRecipe[];
   getFilteredRecipes(category: string): void;
+  setSearchParam: (value: string) => void;
 }
 
 export const RecipeContext = createContext<iRecipeContext>(
@@ -49,6 +51,28 @@ export const RecipeContext = createContext<iRecipeContext>(
 
 export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
   const [recipes, setRecipes] = useState<iRecipe[]>([]);
+  const [searchParam, setSearchParam] = useState<string>(' ');
+
+  useEffect(() => {
+    (async () => {
+      if (searchParam === '') {
+        try {
+          const request = await api.get('/recipes');
+          setRecipes(request.data);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setRecipes(
+          recipes.filter((recipe) =>
+            recipe.name
+              .toLocaleLowerCase()
+              .includes(searchParam.toLocaleLowerCase())
+          )
+        );
+      }
+    })();
+  }, [searchParam]);
 
   useEffect(() => {
     (async () => {
@@ -76,7 +100,9 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
   };
 
   return (
-    <RecipeContext.Provider value={{ recipes, getFilteredRecipes }}>
+    <RecipeContext.Provider
+      value={{ recipes, getFilteredRecipes, setSearchParam }}
+    >
       {children}
     </RecipeContext.Provider>
   );

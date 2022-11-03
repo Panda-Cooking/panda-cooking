@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecipeContext } from '../../../../contexts/RecipesContext';
 import { Heading3, Text2 } from '../../../../styles/typography';
 import RecipeCard from '../RecipeCard';
@@ -19,6 +18,7 @@ const RecipesList = () => {
             key={recipe.id}
             name={recipe.name}
             category={recipe.category}
+            images={recipe.images}
           ></RecipeCard>
         ))}
       </ul>
