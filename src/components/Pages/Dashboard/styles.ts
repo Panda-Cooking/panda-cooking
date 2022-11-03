@@ -260,7 +260,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1921px) {
     header {
       margin-bottom: 26px;
       height: 90px;
