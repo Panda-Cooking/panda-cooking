@@ -25,7 +25,7 @@ const Dashboard = () => {
         {user ? (
           <MenuHamburguer logoutFunction={logoutFunction}></MenuHamburguer>
         ) : (
-          <Link to='/'>Login</Link>
+          <Link to='/signIn'>Login</Link>
         )}
       </header>
       <main>

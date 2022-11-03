@@ -84,7 +84,7 @@ const SignUp = () => {
             {...register("img")}
           />
           <Error>{errors.img?.message}</Error>
-          <Link to="/" relative="path">
+          <Link to="/signIn" relative="path">
             <StyledP>Já possuí uma conta? Faça login aqui!</StyledP>
           </Link>
           <StyledBtn type="submit">Registrar</StyledBtn>

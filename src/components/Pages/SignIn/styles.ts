@@ -46,20 +46,28 @@ export const LoginStyle = styled.section`
       justify-content: center;
       gap: 1rem;
 
-      span {
+      a {
         text-align: center;
         font-weight: 700;
-        a {
-          color: var(--Color-gray-3);
+        color: var(--Color-gray-3);
+        transition: 0.3s;
+
+        &:hover {
+          color: var(--Color-brand-1);
         }
       }
 
       input {
         width: 100%;
-        border: 1px solid var(--Color-border-0);
+        border: 2px solid var(--Color-border-0);
         border-radius: 10px;
         padding: 0.7rem 1rem;
         font-size: 1rem;
+        background-color: var(--Color-brand-3);        
+
+        &:hover {
+          border: 2px solid var(--Color-brand-1);
+        }
 
         &::placeholder {
           font-weight: 700;
@@ -75,10 +83,12 @@ export const LoginStyle = styled.section`
         padding: 0.5rem 0;
         font-size: 30px;
         font-weight: 700;
-        border: none;
+        border: 1px solid var(--Color-brand-1);
+        transition: 0.4s;
 
         &:hover {
-          filter: brightness(1.1);
+          background-color: var(--Color-brand-3);
+          color: var(--Color-brand-1);
         }
       }
     }
