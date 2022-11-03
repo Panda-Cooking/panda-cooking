@@ -56,6 +56,9 @@ export const Header = styled.header`
             font-size: 2rem;
         }
     }
+    @media screen and (min-width: 2200px) {
+        justify-content: space-evenly;
+    }
 `
 
 export const Menu = styled.aside`
