@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { SiFoodpanda } from 'react-icons/si'
 import { GiHamburgerMenu, GiCookingPot } from 'react-icons/gi'
 import { MdOutlineReceiptLong, MdOutlineTimer, MdOutlineDinnerDining, MdOutlineKitchen, MdDone } from 'react-icons/md'
+import { Heading2, Heading3, Heading3Span } from '../../../styles/typography'
+import HeaderMenu from '../../HeaderMenu'
+import { ButtonDefault, ButtonSubmit, Container, Form, FormContainer, IngredientDiv, IngredientInputDiv, InputDefault, InputSmall, Main, OptionDefault, PortionInputDiv, Portions, PrepareTime, PrepareTimeInput, PrepareTimeInputDiv, RecipeNameDiv, SelectDefault, SelectDiv, StepsDiv, TimeAndPortion, TitleDiv } from './styles'
 
 // import { Container } from './styles';
 
@@ -9,85 +12,85 @@ const RecipesSingUp = () => {
   const [recipeCategory, setRecipeCategory] = useState('')
 
   return (
-    <div>
-      <header>
-        <div>
-          <SiFoodpanda/>
-          <h1>Panda Cooking</h1>
-          <GiHamburgerMenu/>
-        </div>
-      </header>
-      <main>
-        <form>
-          <div>
-            <MdOutlineReceiptLong/>
-            <h2>ENVIAR SUA RECEITA</h2>
-          </div>
+    <Container>
+      <HeaderMenu/>
+      <Main>
+        <Form>
+          <FormContainer>
 
-          <div>
-            <input type='text' placeholder='Nome da receita' />
-            <input type='text' placeholder='Url da imagem' />
-          </div>
+            <TitleDiv>
+              <Heading3><MdOutlineReceiptLong/> ENVIAR SUA RECEITA</Heading3>
+            </TitleDiv>
 
-          <div>
-            <div>
-              <p>Tempo de preparo:</p>
-              <div>
-                <MdOutlineTimer/>
-                <input type='number' placeholder='0'/>
-              </div>
-              <p>minutos</p>
-            </div>
-            <div>
-              <p>Porções:</p>
-              <div>
-                <MdOutlineDinnerDining/>
-                <input type='number' placeholder='0' />
-              </div>
-            </div>
-          </div>
+            <RecipeNameDiv>
+              <InputDefault type='text' placeholder='Nome da receita' />
+              <InputDefault type='text' placeholder='Url da imagem' />
+              <ButtonDefault type='button'><Heading3Span>+ adicionar mais imagens</Heading3Span></ButtonDefault>
+            </RecipeNameDiv>
 
-          <div>
-            <select value={recipeCategory}>
-              <option value=''>Bolos</option>
-              <option value=''>Carnes</option>
-              <option value=''>Aves</option>
-              <option value=''>Peixes</option>
-              <option value=''>Sobremesas</option>
-              <option value=''>Massas</option>
-              <option value=''>Saladas</option>
-              <option value=''>Lanches</option>
-              <option value=''>Sopas</option>
-              <option value=''>Bebidas</option>
-            </select>
-          </div>
+            <TimeAndPortion>
+              <PrepareTime>
+                <Heading2>Tempo de preparo:</Heading2>
+                <PrepareTimeInputDiv>
+                  <MdOutlineTimer size={48} color='#FF8787'/>
+                  <PrepareTimeInput type='number' placeholder='0'/>
+                </PrepareTimeInputDiv>
+                <Heading3>minutos</Heading3>
+              </PrepareTime>
+              <Portions>
+                <Heading2>Porções:</Heading2>
+                <PortionInputDiv>
+                  <MdOutlineDinnerDining size={48} color='#FF8787'/>
+                  <PrepareTimeInput type='number' placeholder='0' />
+                </PortionInputDiv>
+              </Portions>
+            </TimeAndPortion>
 
-          <div>
-            <div>
-              <MdOutlineKitchen/>
-              <p>Ingredientes</p>
-            </div>
-            <input type='text' placeholder='Ex: 02 ovos' />
+            <SelectDiv>
+              <SelectDefault value={recipeCategory}>
+                <OptionDefault value=''>Bolos</OptionDefault>
+                <OptionDefault value=''>Carnes</OptionDefault>
+                <OptionDefault value=''>Aves</OptionDefault>
+                <OptionDefault value=''>Peixes</OptionDefault>
+                <OptionDefault value=''>Sobremesas</OptionDefault>
+                <OptionDefault value=''>Massas</OptionDefault>
+                <OptionDefault value=''>Saladas</OptionDefault>
+                <OptionDefault value=''>Lanches</OptionDefault>
+                <OptionDefault value=''>Sopas</OptionDefault>
+                <OptionDefault value=''>Bebidas</OptionDefault>
+              </SelectDefault>
+            </SelectDiv>
 
-            <button type='button'>+ adicionar mais ingredientes</button>
-          </div>
+            <IngredientDiv>
+             
+                <Heading3><MdOutlineKitchen/> Ingredientes</Heading3>
+           
+              <IngredientInputDiv>
+              <InputSmall type="text" placeholder='1 1/2'/>
+              <InputDefault type='text' placeholder='xícara (chá) de ...' />
+              </IngredientInputDiv>
 
-          <div>
-            <div>
-              <GiCookingPot/>
-              <p>Modo de preparo</p>
-            </div>
-            <textarea placeholder='Ex: Primeiro bata os ovos com a farinha...'/>
-            <button type='button'>+ adicionar proximo passo</button>
-          </div>
+              <ButtonDefault type='button'><Heading3Span>+ adicionar mais ingredientes</Heading3Span></ButtonDefault>
+            </IngredientDiv>
 
-          <button>
-            <MdDone/>
-            Enviar
-          </button>
-        </form>
-      </main>
-    </div>
+            <StepsDiv>
+                
+                <Heading3><GiCookingPot/> Modo de preparo</Heading3>
+
+              <InputDefault placeholder='Ex: Primeiro bata os ovos com a farinha...'/>
+              <ButtonDefault type='button'><Heading3Span>+ adicionar proximo passo</Heading3Span></ButtonDefault>
+            </StepsDiv>
+
+            <ButtonSubmit>
+              <Heading3Span color='white'> 
+              <MdDone/>   
+                Enviar
+              </Heading3Span>
+            </ButtonSubmit>
+          </FormContainer>
+        </Form>
+      </Main>
+    </Container>
   )
 }
 
