@@ -16,7 +16,13 @@ export const SectionPresentationsStyled = styled.section`
     justify-content: center;
     align-items: center;
 
+    gap: 32px;
+
     padding: 0 16px;
+  }
+
+  .container > img {
+    display: none;
   }
 
   .box-infos {
@@ -36,6 +42,12 @@ export const SectionPresentationsStyled = styled.section`
     color: var(--Color-white);
     padding: 8px;
     border-radius: 56px;
+  }
+
+  @media (min-width: 768px) {
+    .container > img {
+      display: inline-block;
+    }
   }
 
   @media (min-width: 1024px) {

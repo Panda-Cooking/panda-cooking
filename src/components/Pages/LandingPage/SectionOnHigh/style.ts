@@ -16,15 +16,6 @@ export const SectionOnHighStyled = styled.section`
     gap: 32px;
   }
 
-  .list-products {
-    overflow-x: scroll;
-    display: flex;
-    gap: 32px;
-  }
-
-  .list-products::-webkit-scrollbar {
-    width: 0px;
-  }
   .card-product {
     background-color: var(--Color-white);
 
@@ -58,18 +49,6 @@ export const SectionOnHighStyled = styled.section`
       padding: 0;
       max-width: 1024px;
       margin: 0 auto;
-    }
-
-    .list-products::-webkit-scrollbar {
-      height: 10px;
-    }
-    .list-products::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px var(--Color-gray-2);
-      border-radius: 10px;
-    }
-    .list-products::-webkit-scrollbar-thumb {
-      background: var(--Color-gray-3);
-      border-radius: 10px;
     }
   }
 `;
