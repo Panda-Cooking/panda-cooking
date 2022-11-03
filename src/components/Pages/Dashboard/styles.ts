@@ -259,4 +259,21 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 1920px) {
+    header {
+      margin-bottom: 26px;
+      height: 90px;
+      padding: 0 23.35%;
+
+      a {
+        margin: 0;
+      }
+    }
+
+    main {
+      padding: 0 23.35%;
+      min-height: 87vh;
+    }
+  }
 `;
