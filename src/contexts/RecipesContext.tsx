@@ -12,21 +12,21 @@ interface iRecipeProviderProps {
   children: ReactNode;
 }
 
-interface iRecipeIngredients {
+export interface iRecipeIngredients {
   name: string;
   qtd: string;
 }
 
-interface iRecipePreparation {
+export interface iRecipePreparation {
   description: string;
 }
 
-interface iRecipeComment {
+export interface iRecipeComment {
   tittle: string;
   description: string;
 }
 
-interface iRecipe {
+export interface iRecipe {
   name: string;
   images: string[];
   time: string;

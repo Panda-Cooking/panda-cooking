@@ -72,11 +72,12 @@ export const Main = styled.main`
     }
 
     .secondRecipeSection{
-        width: 90%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         gap: 20px;
         padding-top: 20px;
+        
 
         ul > li{
             list-style: initial;
@@ -89,14 +90,12 @@ export const Main = styled.main`
         ol{
             display: flex;
             flex-direction: column;
-            align-items: center;
             width: 55%;
         }
 
         ul{
             display: flex;
             flex-direction: column;
-            align-items: center;
             width: 45%;
         }
 
@@ -147,6 +146,13 @@ export const Main = styled.main`
                     font-weight: 400;
                     font-size: 0.9rem;
                 }
+
+                ul{
+                    li{
+                        display: flex;
+                        gap: 10px;
+                    }
+                }
             }
 
             p{
@@ -155,16 +161,19 @@ export const Main = styled.main`
             }
         }
 
-        textarea, textarea:hover, textarea:focus{
-            background-color: transparent;
-            border: none;
-            outline: none;
-            width: 100%;
-            padding-bottom: 20px;
+        .addComentContainer{
+            position: relative;
+            textarea, textarea:hover, textarea:focus{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                width: 100%;
+                padding-bottom: 20px;
 
-            p{
-                font-weight: 400;
-                font-size: 0.9rem;
+                p{
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                }
             }
         }
 
@@ -180,6 +189,14 @@ export const Main = styled.main`
                 .coment{
                     width: 75%;
                 }
+            }
+
+            textarea{
+                resize: none;
+            }
+
+            .addComentContainer{
+                width: 60%;
             }
         }
     }
