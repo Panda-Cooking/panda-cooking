@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { SiFoodpanda } from "react-icons/si";
-import { UserContext } from "../../../contexts/UserContext";
-import { Heading1, Heading3, Text1 } from "../../../styles/typography";
+import { Heading1, Heading3 } from "../../../styles/typography";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -17,6 +16,7 @@ import {
 import pandaImg from "../../../assets/img/panda-Register.png";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../../contexts/AuthContext";
 
 export interface IUserRegister {
   name: string;
@@ -28,7 +28,7 @@ export interface IUserRegister {
 
 const SignUp = () => {
   const StyledIcon = { fontSize: "5em", paddingTop: "2rem" };
-  const { signUpFunction } = useContext(UserContext);
+  const { signUpFunction } = useUserContext();
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório"),
