@@ -1,7 +1,6 @@
 import React from 'react';
 import { SiFoodpanda } from 'react-icons/si';
 import { BsUpload } from 'react-icons/bs';
-import { AiOutlineSearch } from 'react-icons/Ai';
 import { Heading2, Heading3, Text2 } from '../../../styles/typography';
 
 import { Container } from './styles';
@@ -10,10 +9,11 @@ import { Link } from 'react-router-dom';
 import { useUserContext } from '../../../contexts/AuthContext';
 import MenuHamburguer from './MenuHamburguer';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
+import panda from '../../../../public/img/panda 4.png';
 
 const Dashboard = () => {
   const { user, logoutFunction } = useUserContext();
-  const { getFilteredRecipes } = useRecipeContext();
+  const { getFilteredRecipes, setSearchParam } = useRecipeContext();
 
   return (
     <Container>
@@ -25,7 +25,9 @@ const Dashboard = () => {
         {user ? (
           <MenuHamburguer logoutFunction={logoutFunction}></MenuHamburguer>
         ) : (
-          <Link to='/signIn'>Login</Link>
+          <Link to='/signIn' id='goToLogin'>
+            Login
+          </Link>
         )}
       </header>
       <main>
@@ -33,6 +35,7 @@ const Dashboard = () => {
           <div id='fs1'>
             <SiFoodpanda size={30} id='miniLogo'></SiFoodpanda>
             <div id='fs4'>
+              <img src={panda} alt='' />
               <div id='fs2'>
                 <Link to='/recipesSignUp'>
                   <BsUpload size={22}></BsUpload>
@@ -40,13 +43,11 @@ const Dashboard = () => {
                 </Link>
               </div>
               <div className='searchBar' id='fs3'>
-                <input type='text' placeholder='Pesquisar...' />
-                <button>
-                  <AiOutlineSearch
-                    size={23}
-                    className='searchIcon'
-                  ></AiOutlineSearch>
-                </button>
+                <input
+                  onChange={(e) => setSearchParam(e.target.value)}
+                  type='text'
+                  placeholder='Pesquisar...'
+                />
               </div>
             </div>
           </div>

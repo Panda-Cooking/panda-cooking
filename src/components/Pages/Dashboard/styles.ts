@@ -13,7 +13,8 @@ export const Container = styled.div`
     align-items: center;
     margin-bottom: 16px;
 
-    svg {
+    svg,
+    a {
       margin: 8px 26px;
     }
 
@@ -22,6 +23,24 @@ export const Container = styled.div`
 
       h2 {
         display: none;
+      }
+    }
+
+    #goToLogin {
+      text-decoration: none;
+      color: var(--Color-gray-3);
+      background-color: #ffffff;
+      padding: 6px;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--Color-gray-3);
+        color: #ffffff;
+        transition: 650ms;
+      }
+
+      &:not(:hover) {
+        transition: 650ms;
       }
     }
   }
@@ -54,7 +73,7 @@ export const Container = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left: 10px;
+        margin: 0 30px;
 
         svg {
           color: var(--Color-gray-3);
@@ -92,6 +111,10 @@ export const Container = styled.div`
         width: 100%;
         display: flex;
         justify-content: space-between;
+
+        img {
+          display: none;
+        }
       }
 
       ul {
@@ -101,12 +124,7 @@ export const Container = styled.div`
         gap: 8px;
 
         li {
-          background: rgb(255, 119, 135);
-          background: linear-gradient(
-            180deg,
-            rgba(255, 119, 135, 1) 0%,
-            rgba(188, 100, 255, 1) 100%
-          );
+          background-color: var(--Color-brand-1);
           height: 28px;
           width: 100px;
           border-radius: 16px;
@@ -119,12 +137,7 @@ export const Container = styled.div`
         }
 
         .filterAll {
-          background: rgb(0, 0, 0);
-          background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 1) 0%,
-            rgba(152, 69, 168, 1) 100%
-          );
+          background-color: var(--Color-gray-3);
         }
       }
     }
@@ -167,17 +180,18 @@ export const Container = styled.div`
             display: block;
             margin-top: 8px;
           }
-        }
 
-        #fs2 {
-          width: 16%;
-          display: flex;
-          justify-content: center;
-
-          #fs2 a {
-            width: 100px;
-            height: 64px;
+          #fs2 {
             display: flex;
+            justify-content: center;
+            margin: 0 0 0 16px;
+
+            #fs2 a {
+              width: 100px;
+              height: 64px;
+              display: flex;
+              margin: 10px 30px;
+            }
           }
         }
 
@@ -194,13 +208,13 @@ export const Container = styled.div`
         }
 
         #fs3 {
-          width: 80%;
+          width: 90%;
           justify-content: space-around;
           align-items: center;
           margin-left: 20px;
 
           input {
-            width: 92%;
+            width: 100%;
             border: 2px solid var(--Color-brand-1);
           }
         }
@@ -223,6 +237,12 @@ export const Container = styled.div`
           position: absolute;
           bottom: 16px;
           align-items: center;
+          justify-content: flex-start;
+
+          img {
+            display: block;
+            width: 42px;
+          }
         }
       }
     }

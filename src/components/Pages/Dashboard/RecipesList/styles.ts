@@ -28,14 +28,15 @@ export const RecipesListContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 26px;
-    justify-content: center;
+    justify-content: flex-start;
 
     li {
-      height: 264px;
+      //height: 264px;
       width: 321px;
       border-radius: 12px;
       background-color: #ffffff;
       box-shadow: 4px 5px 6px gray;
+      position: relative;
       cursor: pointer;
 
       img {
@@ -51,6 +52,19 @@ export const RecipesListContainer = styled.div`
         justify-content: center;
         align-items: center;
         gap: 3px;
+        padding: 0px 8px 8px 8px;
+
+        div {
+          background-color: var(--Color-gray-3);
+          padding: 3px 6px 3px 6px;
+          border-radius: 0 0 6px 6px;
+          position: absolute;
+          top: 0;
+
+          p {
+            color: #ffffff;
+          }
+        }
 
         h3 {
           text-align: center;
