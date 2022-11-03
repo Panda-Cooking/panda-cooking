@@ -1,12 +1,15 @@
-import panda from "../../../assets/Panda-1.svg";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { SiFoodpanda } from "react-icons/si";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginStyle } from "./styles";
-import * as Yup from "yup";
-import "react-toastify/dist/ReactToastify.css";
-import { useUserContext } from "../../../contexts/AuthContext";
+
+import panda from '../../../assets/Panda-1.svg';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { SiFoodpanda } from 'react-icons/si';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoginStyle } from './styles';
+import * as Yup from 'yup';
+import 'react-toastify/dist/ReactToastify.css';
+import { useUserContext } from '../../../contexts/AuthContext';
+import { Heading1, Heading2 } from '../../../styles/typography';
+
 
 export interface iUserLogin {
   email: string;
@@ -33,8 +36,8 @@ const SignIn = () => {
       <div className="divLogin">
         <div className="logoHeader">
           <SiFoodpanda />
-          <h1>Panda Cooking</h1>
-          <h2>Login</h2>
+          <Heading1>Panda Cooking</Heading1>
+          <Heading2>Login</Heading2>
         </div>
         <form action="" onSubmit={handleSubmit(loginFunction)}>
           <input type="text" placeholder="E-mail" {...register("email")} />
