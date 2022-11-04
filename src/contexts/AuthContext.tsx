@@ -12,6 +12,7 @@ export interface iUserProviderProps {
 interface iUserInfo {
   email: string
   name: string
+  img: string
   id: number
 }
 
@@ -26,6 +27,7 @@ export const userContext = createContext<iUserContext>({} as iUserContext)
 
 const AuthContext = ({ children }: iUserProviderProps) => {
   const [user, setUser] = useState<iUserInfo | null>(null)
+  console.log(user)
 
   const navigate = useNavigate()
 

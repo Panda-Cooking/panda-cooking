@@ -26,7 +26,7 @@ export const Header = styled.header`
 
     @media screen and (min-width: 443px) {
         box-shadow: #343a40 0px 2px 10px 3px;
-
+        justify-content: space-around;
         .btnMenuMobile{
             display: none;
         }

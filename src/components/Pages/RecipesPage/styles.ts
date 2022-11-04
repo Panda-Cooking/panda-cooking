@@ -2,22 +2,23 @@ import styled from 'styled-components';
 import { GlobalStyle } from '../../../styles/Global'
 
 export const Container = styled.div`
-    max-width: 1440px;
+    max-width: 100vw;
     color: var(--Color-gray-3);
 `
 
 export const Main = styled.main`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin: 0 auto;
     gap: 20px;
+    max-width: 920px;
+    padding: 20px;
 
     .firstRecipeSection{
-        width: 90%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding-top: 20px;
         
         img{
             height: 211px;
@@ -72,7 +73,7 @@ export const Main = styled.main`
     }
 
     .secondRecipeSection{
-        width: 80%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -90,13 +91,13 @@ export const Main = styled.main`
         ol{
             display: flex;
             flex-direction: column;
-            width: 55%;
+            padding-left: 20px;
         }
 
         ul{
             display: flex;
             flex-direction: column;
-            width: 45%;
+            padding-left: 20px;
         }
 
         ul > li:nth-child(1), ol > li:nth-child(1) {
