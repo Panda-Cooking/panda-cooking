@@ -16,6 +16,7 @@ const RecipesList = () => {
         {recipes.map((recipe) => (
           <RecipeCard
             key={recipe.id}
+            recipeId={recipe.id}
             name={recipe.name}
             category={recipe.category}
             images={recipe.images}

@@ -29,7 +29,7 @@ const MenuHamburguer = ({ logoutFunction }: iMenuHamburguerProps) => {
           animate={{ translateY: [-40, 0], opacity: [0, 1] }}
           transition={{ duration: 0.6 }}
         >
-          <div>
+          <div className='myProfile'>
             <Link to='/'>Meu perfíl</Link>
           </div>
           <div>

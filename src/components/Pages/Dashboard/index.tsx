@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SiFoodpanda } from 'react-icons/si';
 import { BsUpload } from 'react-icons/bs';
 import { Heading2, Heading3, Text2 } from '../../../styles/typography';
@@ -10,10 +10,16 @@ import { useUserContext } from '../../../contexts/AuthContext';
 import MenuHamburguer from './MenuHamburguer';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
 import panda from '../../../../public/img/panda 4.png';
+import HeaderMenu from '../../HeaderMenu';
 
 const Dashboard = () => {
   const { user, logoutFunction } = useUserContext();
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
+
+  useEffect(() => {
+    const recipeId = localStorage.getItem('@recipeId');
+    recipeId && localStorage.removeItem('@recipeId');
+  }, []);
 
   return (
     <Container>
@@ -76,3 +82,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+//

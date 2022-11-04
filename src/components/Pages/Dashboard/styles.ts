@@ -149,7 +149,8 @@ export const Container = styled.div`
       height: 90px;
       padding: 0 14%;
 
-      svg {
+      svg,
+      a {
         margin: 0;
       }
 
