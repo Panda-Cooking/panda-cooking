@@ -1,6 +1,7 @@
+import { SwiperSlide } from "swiper/react";
 import productImg from "../../../../assets/img/product.png";
-import { Heading2, Heading3, Text2 } from "../../../../styles/typography";
-import { HorizontalScrolll } from "../HorizontalScroll";
+import { Heading2, Heading3 } from "../../../../styles/typography";
+import { HorizontalScroll } from "../../../HorizontalScroll";
 import { SectionOnHighStyled } from "./style";
 
 export const SectionOnHigh = () => {
@@ -8,56 +9,33 @@ export const SectionOnHigh = () => {
     <SectionOnHighStyled>
       <div className="container">
         <Heading2>Em alta</Heading2>
-        <HorizontalScrolll height={236}>
-          <li className="card-product">
+
+        <HorizontalScroll>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-          <li className="card-product">
+            <Heading3>Lorem Ipsum 1</Heading3>
+          </SwiperSlide>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-          <li className="card-product">
+            <Heading3>Lorem Ipsum 2</Heading3>
+          </SwiperSlide>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-          <li className="card-product">
+            <Heading3>Lorem Ipsum 3</Heading3>
+          </SwiperSlide>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-          <li className="card-product">
+            <Heading3>Lorem Ipsum 4</Heading3>
+          </SwiperSlide>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-          <li className="card-product">
+            <Heading3>Lorem Ipsum 5</Heading3>
+          </SwiperSlide>
+          <SwiperSlide>
             <img src={productImg} alt="" />
-            <Heading3>Lorem Ipsum</Heading3>
-            <Text2 color="gray-2">
-              Lorem Ipsum is simply text of the printing and typesett ing
-              industry.
-            </Text2>
-          </li>
-        </HorizontalScrolll>
+            <Heading3>Lorem Ipsum 6</Heading3>
+          </SwiperSlide>
+        </HorizontalScroll>
       </div>
     </SectionOnHighStyled>
   );
