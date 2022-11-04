@@ -16,11 +16,6 @@ const Dashboard = () => {
   const { user, logoutFunction } = useUserContext();
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
 
-  useEffect(() => {
-    const recipeId = localStorage.getItem('@recipeId');
-    recipeId && localStorage.removeItem('@recipeId');
-  }, []);
-
   return (
     <Container>
       <header>

@@ -11,13 +11,12 @@ interface iRecipeCardProps {
 const RecipeCard = ({ name, category, images, recipeId }: iRecipeCardProps) => {
   const navigate = useNavigate();
 
-  const setRecipeId = (id: string) => {
-    localStorage.setItem('@recipeId', id);
-    navigate('/recipesPage');
+  const navigateToRecipe = (id: string) => {
+    navigate(`/recipesPage/${id}`);
   };
 
   return (
-    <li onClick={(e) => setRecipeId(recipeId.toString())}>
+    <li onClick={(e) => navigateToRecipe(recipeId.toString())}>
       <img src={images && images[0]} alt='Imagem de receita' />
       <div>
         <Heading3>{name}</Heading3>
