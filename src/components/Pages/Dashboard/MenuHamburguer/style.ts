@@ -10,18 +10,12 @@ export const MenuHamburguerContainer = styled.div`
   }
 
   section {
-    background: rgb(255, 119, 135);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 119, 135, 1) 0%,
-      rgba(188, 100, 255, 1) 100%
-    );
+    background-color: var(--Color-brand-1);
     width: 100%;
     position: absolute;
     top: 53px;
 
     div {
-      border-bottom: 1px solid black;
       padding: 4px 0;
       display: flex;
       justify-content: center;
@@ -30,6 +24,7 @@ export const MenuHamburguerContainer = styled.div`
       span {
         text-decoration: none;
         color: #ffffff;
+        margin: 0;
       }
     }
 
@@ -40,14 +35,22 @@ export const MenuHamburguerContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     section {
+      background-color: #ffffff;
       width: 450%;
       top: -14px;
       right: 46px;
       z-index: 1;
       border-radius: 12px;
 
+      .myProfile {
+        border-bottom: 1px solid var(--Color-gray-3);
+      }
+
       div {
-        border-radius: 12px;
+        a,
+        span {
+          color: var(--Color-gray-3);
+        }
       }
     }
   }
