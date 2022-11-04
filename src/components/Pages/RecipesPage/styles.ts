@@ -19,11 +19,11 @@ export const Main = styled.main`
         display: flex;
         flex-direction: column;
         gap: 20px;
-        
+
         img{
+            border-radius: 4px;
             height: 211px;
             width: 100%;
-            border-radius: 4px;
         }
         
         h2{
