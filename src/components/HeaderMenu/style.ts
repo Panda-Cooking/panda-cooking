@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const HeaderStyle = styled.header`
   background-color: var(--Color-brand-2);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 16px;
 
@@ -40,7 +40,6 @@ export const HeaderStyle = styled.header`
   @media screen and (min-width: 768px) {
     margin-bottom: 26px;
     height: 90px;
-    padding: 0 14%;
 
     svg,
     a {
@@ -69,4 +68,4 @@ export const HeaderStyle = styled.header`
       margin: 0;
     }
   }
-`
+`;
