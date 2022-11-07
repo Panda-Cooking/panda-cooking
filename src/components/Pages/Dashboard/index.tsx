@@ -7,10 +7,10 @@ import { Container } from './styles';
 import RecipesList from './RecipesList';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../../../contexts/AuthContext';
-import MenuHamburguer from './MenuHamburguer';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
 import panda from '../../../../public/img/panda 4.png';
 import HeaderMenu from '../../HeaderMenu';
+import { Header } from '../LandingPage/Header';
 
 const Dashboard = () => {
   const { user, logoutFunction } = useUserContext();
@@ -23,19 +23,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <header>
-        <div>
-          <SiFoodpanda size={45} className='mainPandaLogo'></SiFoodpanda>
-          <Heading2>Panda Cooking</Heading2>
-        </div>
-        {user ? (
-          <MenuHamburguer logoutFunction={logoutFunction}></MenuHamburguer>
-        ) : (
-          <Link to='/signIn' id='goToLogin'>
-            Login
-          </Link>
-        )}
-      </header>
+      <HeaderMenu/>
       <main>
         <section className='filterSection'>
           <div id='fs1'>

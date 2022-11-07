@@ -12,8 +12,8 @@ export interface iUserProviderProps {
 interface iUserInfo {
   email: string
   name: string
-  id: number
   img: string
+  id: number
 }
 
 interface iUserContext {
