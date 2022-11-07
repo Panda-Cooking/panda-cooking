@@ -56,7 +56,6 @@ export const Main = styled.main`
       }
     }
   }
-
   .secondRecipeSection {
     width: 100%;
     display: flex;
@@ -106,7 +105,6 @@ export const Main = styled.main`
       ol {
         width: 100%;
       }
-
       ul {
         width: 100%;
       }
@@ -137,7 +135,7 @@ export const Main = styled.main`
           flex-direction: column;
           gap: 16px;
         }
-
+      }
         ul > li {
           display: flex;
           flex-direction: column;

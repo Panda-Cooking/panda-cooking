@@ -1,36 +1,21 @@
 import React, { useEffect } from 'react';
 import { SiFoodpanda } from 'react-icons/si';
 import { BsUpload } from 'react-icons/bs';
-import { Heading2, Heading3, Text2 } from '../../../styles/typography';
+import { Text2 } from '../../../styles/typography';
 
 import { Container } from './styles';
 import RecipesList from './RecipesList';
 import { Link } from 'react-router-dom';
-import { useUserContext } from '../../../contexts/AuthContext';
-import MenuHamburguer from './MenuHamburguer';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
-import panda from '../../../../public/img/panda 4.png';
+import panda from '../../../../src/assets/img/panda 4.png';
 import HeaderMenu from '../../HeaderMenu';
 
 const Dashboard = () => {
-  const { user, logoutFunction } = useUserContext();
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
 
   return (
     <Container>
-      <header>
-        <div>
-          <SiFoodpanda size={45} className='mainPandaLogo'></SiFoodpanda>
-          <Heading2>Panda Cooking</Heading2>
-        </div>
-        {user ? (
-          <MenuHamburguer logoutFunction={logoutFunction}></MenuHamburguer>
-        ) : (
-          <Link to='/signIn' id='goToLogin'>
-            Login
-          </Link>
-        )}
-      </header>
+      <HeaderMenu/>
       <main>
         <section className='filterSection'>
           <div id='fs1'>

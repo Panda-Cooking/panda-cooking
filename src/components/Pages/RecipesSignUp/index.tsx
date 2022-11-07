@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { SiFoodpanda } from "react-icons/si";
-import { GiHamburgerMenu, GiCookingPot } from "react-icons/gi";
+import {  GiCookingPot } from "react-icons/gi";
 import {
   MdOutlineReceiptLong,
   MdOutlineTimer,
@@ -10,7 +9,6 @@ import {
 } from "react-icons/md";
 
 import { Heading2, Heading3, Heading3Span } from "../../../styles/typography";
-import HeaderMenu from "../../HeaderMenu";
 import {
   ButtonDefault,
   ButtonSubmit,

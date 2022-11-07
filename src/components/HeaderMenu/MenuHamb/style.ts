@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const MenuHamburguerContainer = styled.div`
+export const HambStyle = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -11,6 +11,7 @@ export const MenuHamburguerContainer = styled.div`
 
   section {
     background-color: var(--Color-brand-1);
+    color: var(--Color-white);
     width: 100%;
     position: absolute;
     top: 53px;
@@ -23,7 +24,7 @@ export const MenuHamburguerContainer = styled.div`
       a,
       span {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--Color-white);
         margin: 0;
       }
     }
@@ -35,7 +36,8 @@ export const MenuHamburguerContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     section {
-      background-color: #ffffff;
+      background-color: var(--Color-brand-1);
+      color: var(--Color-white);
       width: 450%;
       top: -14px;
       right: 46px;
@@ -43,15 +45,15 @@ export const MenuHamburguerContainer = styled.div`
       border-radius: 12px;
 
       .myProfile {
-        border-bottom: 1px solid var(--Color-gray-3);
+        border-bottom: 1px solid var(--Color-border-0);
       }
 
       div {
         a,
         span {
-          color: var(--Color-gray-3);
+          color: var(--Color-white);
         }
       }
     }
   }
-`;
+`

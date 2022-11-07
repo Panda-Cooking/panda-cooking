@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecipeContext } from '../../../../contexts/RecipesContext';
 import api from '../../../../services/api';
 import { Heading3, Text2 } from '../../../../styles/typography';
+import Loader from '../../../Loading';
 import RecipeCard from '../RecipeCard';
 import { RecipesListContainer } from './styles';
 
@@ -45,29 +46,32 @@ const RecipesList = () => {
       <div id='div1'>
         <Heading3>Lista de receitas</Heading3>
       </div>
-      {/*.map das receitas*/}
+      {recipes.length || filteredRecipes.length ? (
+        <ul>
+          {filteredRecipes.length
+            ? filteredRecipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  recipeId={recipe.id}
+                  name={recipe.name}
+                  category={recipe.category}
+                  images={recipe.images}
+                ></RecipeCard>
+              ))
+            : recipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  recipeId={recipe.id}
+                  name={recipe.name}
+                  category={recipe.category}
+                  images={recipe.images}
+                ></RecipeCard>
+              ))}
+        </ul>
+      ) : (
+        <Loader></Loader>
+      )}
 
-      <ul>
-        {filteredRecipes.length
-          ? filteredRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                recipeId={recipe.id}
-                name={recipe.name}
-                category={recipe.category}
-                images={recipe.images}
-              ></RecipeCard>
-            ))
-          : recipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                recipeId={recipe.id}
-                name={recipe.name}
-                category={recipe.category}
-                images={recipe.images}
-              ></RecipeCard>
-            ))}
-      </ul>
       {canObserve && <div ref={elementBeingObserved} id='infinityScroll'></div>}
     </RecipesListContainer>
   );

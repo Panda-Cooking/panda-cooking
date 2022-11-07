@@ -6,45 +6,6 @@ export const Container = styled.div`
     text-decoration: none;
   }
 
-  header {
-    background-color: var(--Color-brand-1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-
-    svg,
-    a {
-      margin: 8px 26px;
-    }
-
-    div {
-      display: flex;
-
-      h2 {
-        display: none;
-      }
-    }
-
-    #goToLogin {
-      text-decoration: none;
-      color: var(--Color-gray-3);
-      background-color: #ffffff;
-      padding: 6px;
-      border-radius: 4px;
-
-      &:hover {
-        background-color: var(--Color-gray-3);
-        color: #ffffff;
-        transition: 650ms;
-      }
-
-      &:not(:hover) {
-        transition: 650ms;
-      }
-    }
-  }
-
   main {
     padding: 0 26px;
 
@@ -144,29 +105,6 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    header {
-      margin-bottom: 26px;
-      height: 90px;
-      padding: 0 14%;
-
-      svg,
-      a {
-        margin: 0;
-      }
-
-      .mainPandaLogo {
-        transform: scale(1.6);
-      }
-
-      div {
-        h2 {
-          display: block;
-          color: white;
-          font-size: 34px;
-          margin-left: 34px;
-        }
-      }
-    }
 
     main {
       padding: 0 14%;
@@ -262,15 +200,6 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1921px) {
-    header {
-      margin-bottom: 26px;
-      height: 90px;
-      padding: 0 23.35%;
-
-      a {
-        margin: 0;
-      }
-    }
 
     main {
       padding: 0 23.35%;
