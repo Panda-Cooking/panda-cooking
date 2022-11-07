@@ -82,6 +82,11 @@ export const RecipesListContainer = styled.div`
     }
   }
 
+  #infinityScroll {
+    width: 100%;
+    height: 10px;
+  }
+
   @media screen and (min-width: 768px) {
     #div1 {
       margin-top: 50px;

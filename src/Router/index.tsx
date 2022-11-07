@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../components/Pages/Dashboard';
@@ -8,7 +7,6 @@ import SignIn from '../components/Pages/SignIn';
 import SignUp from '../components/Pages/SignUp';
 import RecipesSignUp from '../components/Pages/RecipesSignUp';
 import Profile from '../components/Pages/Profile';
-
 
 const Router = () => {
   return (

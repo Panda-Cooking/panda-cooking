@@ -12,10 +12,7 @@ export const FooterStyled = styled.footer`
     gap: 16px;
   }
 
-  .founder-card {
-    min-width: 232px;
-    width: 232px;
-
+  .swiper-slide {
     padding: 16px;
 
     border-radius: 8px;
@@ -28,12 +25,15 @@ export const FooterStyled = styled.footer`
     align-items: center;
     gap: 16px;
   }
-  .founder-card > img {
+  .swiper-slide > img {
     width: 64px;
     border-radius: 50%;
   }
+  .swiper-slide > h3 {
+    font-size: 20px;
+  }
 
-  .founder-card > div > a {
+  .swiper-slide > div > a {
     color: var(--Color-gray-3);
     font-size: 32px;
     margin: 0 8px;

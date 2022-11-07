@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react';
 import { SiFoodpanda } from 'react-icons/si';
 import { BsUpload } from 'react-icons/bs';
-import { Heading2, Heading3, Text2 } from '../../../styles/typography';
+import { Text2 } from '../../../styles/typography';
 
 import { Container } from './styles';
 import RecipesList from './RecipesList';
 import { Link } from 'react-router-dom';
-import { useUserContext } from '../../../contexts/AuthContext';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
-import panda from '../../../../public/img/panda 4.png';
+import panda from '../../../../src/assets/img/panda 4.png';
 import HeaderMenu from '../../HeaderMenu';
 import { Header } from '../LandingPage/Header';
 
 const Dashboard = () => {
-  const { user, logoutFunction } = useUserContext();
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
-
-  useEffect(() => {
-    const recipeId = localStorage.getItem('@recipeId');
-    recipeId && localStorage.removeItem('@recipeId');
-  }, []);
 
   return (
     <Container>
