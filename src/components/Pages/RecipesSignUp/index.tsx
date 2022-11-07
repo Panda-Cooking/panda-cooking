@@ -37,6 +37,7 @@ import { toast } from "react-toastify";
 
 import { useForm } from "react-hook-form";
 import { useUserContext } from "../../../contexts/AuthContext";
+import HeaderMenu from "../../HeaderMenu";
 
 const RecipesSingUp = () => {
   const { user } = useUserContext();
