@@ -5,14 +5,14 @@ export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 16px;
 
   svg,
   a {
     margin: 8px 26px;
   }
 
-  div {
+  .linkHome {
+    color: var(--Color-gray-3);
     display: flex;
 
     h2 {
@@ -38,7 +38,6 @@ export const HeaderStyle = styled.header`
     }
   }
   @media screen and (min-width: 768px) {
-    margin-bottom: 26px;
     height: 90px;
 
     svg,
@@ -50,7 +49,7 @@ export const HeaderStyle = styled.header`
       transform: scale(1.6);
     }
 
-    div {
+    .linkHome {
       h2 {
         display: block;
         color: white;
@@ -60,7 +59,6 @@ export const HeaderStyle = styled.header`
     }
   }
   @media screen and (min-width: 1921px) {
-    margin-bottom: 26px;
     height: 90px;
     padding: 0 23.35%;
 
@@ -69,3 +67,4 @@ export const HeaderStyle = styled.header`
     }
   }
 `;
+

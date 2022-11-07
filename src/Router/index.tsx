@@ -6,6 +6,7 @@ import RecipesPage from '../components/Pages/RecipesPage';
 import SignIn from '../components/Pages/SignIn';
 import SignUp from '../components/Pages/SignUp';
 import RecipesSignUp from '../components/Pages/RecipesSignUp';
+import Profile from '../components/Pages/Profile';
 
 const Router = () => {
   return (
@@ -15,8 +16,9 @@ const Router = () => {
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/recipesSignUp' element={<RecipesSignUp />} />
       <Route path='/recipesPage'>
-        <Route path=':recipeId' element={<RecipesPage />} />
+        <Route path=':recipeId' element={<RecipesPage />}></Route>
       </Route>
+      <Route path='/profile' element={<Profile />} />
       <Route path='/' element={<LandingPage />} />
     </Routes>
   );

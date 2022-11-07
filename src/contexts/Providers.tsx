@@ -1,10 +1,15 @@
 import AuthContext, { iUserProviderProps } from './AuthContext'
+import { ProfileProviders } from './ProfileContext'
 import RecipeProvider from './RecipesContext'
 
 function Providers({ children }: iUserProviderProps) {
   return (
     <AuthContext>
-      <RecipeProvider>{children}</RecipeProvider>
+      <ProfileProviders>
+          <RecipeProvider>
+            {children}
+          </RecipeProvider>
+      </ProfileProviders>
     </AuthContext>
   )
 }
