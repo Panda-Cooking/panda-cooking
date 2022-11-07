@@ -38,8 +38,11 @@ import {
 import { toast } from "react-toastify";
 
 import { useForm } from "react-hook-form";
+import { useUserContext } from "../../../contexts/AuthContext";
 
 const RecipesSingUp = () => {
+  const { user } = useUserContext();
+
   const [inputsImages, setInputsImages] = useState([
     {
       id: 0,
@@ -77,7 +80,11 @@ const RecipesSingUp = () => {
   };
 
   const sumbitForm = (data: any) => {
-    console.log(data);
+    const reqBody = {
+      ...data,
+      userId: user?.id,
+    };
+    console.log(reqBody);
   };
 
   return (
@@ -103,16 +110,14 @@ const RecipesSingUp = () => {
                 placeholder="Descrição"
                 {...register("description")}
               />
-              {inputsImages.map((el) => {
-                return (
-                  <InputDefault
-                    key={el.id}
-                    type="text"
-                    placeholder="Url da imagem"
-                    {...register(`images[${el.id}]`)}
-                  />
-                );
-              })}
+              {inputsImages.map((el) => (
+                <InputDefault
+                  key={el.id}
+                  type="text"
+                  placeholder="Url da imagem"
+                  {...register(`images[${el.id}]`)}
+                />
+              ))}
               <ButtonDefault type="button" onClick={addInputImage}>
                 <Heading3Span>+ adicionar mais imagens</Heading3Span>
               </ButtonDefault>

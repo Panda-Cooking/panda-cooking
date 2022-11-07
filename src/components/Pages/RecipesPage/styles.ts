@@ -1,204 +1,218 @@
-import styled from 'styled-components';
-import { GlobalStyle } from '../../../styles/Global'
+import styled from "styled-components";
+import { GlobalStyle } from "../../../styles/Global";
 
 export const Container = styled.div`
-    max-width: 100vw;
-    color: var(--Color-gray-3);
-`
+  max-width: 100vw;
+  color: var(--Color-gray-3);
+`;
 
 export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  max-width: 920px;
+  padding: 20px;
+
+  .firstRecipeSection {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
     gap: 20px;
-    max-width: 920px;
-    padding: 20px;
 
-    .firstRecipeSection{
+    img {
+      border-radius: 4px;
+      height: 296px;
+      object-fit: cover;
+      width: 100%;
+      object-position: 10% 66%;
+    }
+
+    .recipeOwner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    .recipeText {
+      width: 100%;
+      p {
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media screen and (min-width: 443px) {
+      .recipeText {
+        width: 80%;
+      }
+    }
+  }
+
+  .secondRecipeSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+
+    ul > li {
+      list-style: initial;
+    }
+
+    ol > li {
+      list-style: decimal;
+    }
+
+    ol {
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
+    }
+
+    ul > li:nth-child(1),
+    ol > li:nth-child(1) {
+      padding-top: 10px;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    li {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+
+    @media screen and (min-width: 443px) {
+      flex-direction: row;
+      gap: 30%;
+
+      ol {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+      }
 
-        img{
-            border-radius: 4px;
-            height: 211px;
-            width: 100%;
-        }
-        
-        h2{
-            text-align: left;
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-       
-        .recipeOwner{
-            display: flex;
-            justify-content: center;
-            align-items: center; 
-            gap: 5px;
-
-            p{
-                font-weight: 700;
-                font-size: 1.3rem;
-            }
-        }
-    
-        .recipeText{
-            width: 100%;
-            p{
-                font-weight: 400;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media screen and (min-width: 443px) { 
-            position: relative;
-            img{
-                height: 451px;
-                max-width: 1300px;
-                width: 100%;
-                border-radius: 4px;
-            }
-            .recipeOwner{
-                position: absolute;
-                top: 490px;
-                left: 85%;
-            }
-            .recipeText{
-                width: 80%;
-            }
-        }
-        
-    }
-
-    .secondRecipeSection{
+      ul {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding-top: 20px;
-        
+      }
+    }
+  }
 
-        ul > li{
-            list-style: initial;
+  .thirdRecipeSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+
+    .comentsContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      .coment {
+        width: 100%;
+        p {
+          font-weight: 400;
+          font-size: 0.9rem;
         }
 
-        ol > li{
-            list-style: decimal;
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
 
-        ol{
-            display: flex;
-            flex-direction: column;
-            padding-left: 20px;
+        ul > li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          justify-content: space-between;
+
+          gap: 16px;
+
+          background-color: var(--Color-gray-0);
+
+          padding: 16px;
+
+          border-radius: 4px;
         }
 
-        ul{
-            display: flex;
-            flex-direction: column;
-            padding-left: 20px;
+        ul > li > div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+        ul > li > div > img {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+          object-position: center;
         }
 
-        ul > li:nth-child(1), ol > li:nth-child(1) {
-           padding-top: 10px;
+        ul > li > p {
+          align-self: flex-end;
         }
-
-        h2{
-            font-weight: 700;
-            font-size: 1.5rem;
+      }
+      @media (min-width: 600px) {
+        .coment {
+          ul > li {
+            flex-direction: row;
+          }
+          ul > li > div {
+            flex-direction: row;
+          }
         }
-
-        li{
-            font-weight: 400;
-            font-size: 1rem;
-        }
-
-        @media screen and (min-width: 443px) {
-           flex-direction: row;
-           gap: 30%;
-
-            ol{
-                width: 100%;
-            }
-
-            ul{
-                width: 100%;
-            }
-        }
+      }
     }
 
-    .thirdRecipeSection{
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        padding-top: 20px;
+    .addComentContainer {
+      background-color: var(--Color-gray-0);
+      border-radius: 4px;
 
-        .comentsContainer{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        
-            .coment{
-                width: 100%;
-                p{
-                    font-weight: 400;
-                    font-size: 0.9rem;
-                }
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 16px;
 
-                ul{
-                    li{
-                        display: flex;
-                        gap: 10px;
-                    }
-                }
-            }
+      textarea {
+        border: none;
+        outline: none;
+        resize: none;
+        background: none;
+        width: 95%;
+      }
+      button {
+        border: none;
+        background: none;
+      }
 
-            p{
-                font-weight: 400;
-                font-size: 0.9rem;
-            }
-        }
-
-        .addComentContainer{
-            position: relative;
-            textarea, textarea:hover, textarea:focus{
-                background-color: transparent;
-                border: none;
-                outline: none;
-                width: 100%;
-                padding-bottom: 20px;
-
-                p{
-                    font-weight: 400;
-                    font-size: 0.9rem;
-                }
-            }
-        }
-
-        h2{
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        @media screen and (min-width: 443px) {
-            .comentsContainer{
-                flex-direction: row;
-
-                .coment{
-                    width: 75%;
-                }
-            }
-
-            textarea{
-                resize: none;
-            }
-
-            .addComentContainer{
-                width: 60%;
-            }
-        }
+      button > svg {
+        width: 24px;
+        height: 24px;
+      }
     }
-`
+
+    h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+`;

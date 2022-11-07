@@ -4,9 +4,10 @@ import {
   ReactNode,
   useState,
   useEffect,
-} from 'react';
-import { toast } from 'react-toastify';
-import api from '../services/api';
+} from "react";
+import { toast } from "react-toastify";
+import api from "../services/api";
+import { iUserInfo } from "./AuthContext";
 
 interface iRecipeProviderProps {
   children: ReactNode;
@@ -22,8 +23,9 @@ export interface iRecipePreparation {
 }
 
 export interface iRecipeComment {
-  tittle: string;
   description: string;
+  user: iUserInfo;
+  date: string;
 }
 
 export interface iRecipe {
@@ -57,15 +59,15 @@ export const RecipeContext = createContext<iRecipeContext>(
 export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
   const [recipes, setRecipes] = useState<iRecipe[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<iRecipe[]>([]);
-  const [searchParam, setSearchParam] = useState<string>(' ');
+  const [searchParam, setSearchParam] = useState<string>(" ");
   const [canObserve, setCanObserve] = useState(false);
   const [recipesPayload, setRecipesPayload] = useState(1);
 
   useEffect(() => {
     (async () => {
-      if (searchParam === '') {
+      if (searchParam === "") {
         try {
-          const request = await api.get('/recipes?_sort=id&_order=desc');
+          const request = await api.get("/recipes?_sort=id&_order=desc");
           //setRecipes(request.data);
           setFilteredRecipes([]);
         } catch (error) {
@@ -87,20 +89,20 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
     (async () => {
       try {
         const request = await api.get(
-          '/recipes?_sort=id&_order=desc&_page=1&_limit=12'
+          "/recipes?_sort=id&_order=desc&_page=1&_limit=12"
         );
         setRecipes(request.data);
         setCanObserve(true);
       } catch (error) {
-        toast.error('Erro ao listar receitas');
+        toast.error("Erro ao listar receitas");
       }
     })();
   }, []);
 
   const getFilteredRecipes = async (category: string) => {
     try {
-      if (category === 'Todos') {
-        const request = await api.get('/recipes');
+      if (category === "Todos") {
+        const request = await api.get("/recipes");
         //setRecipes(request.data);
         setFilteredRecipes([]);
       } else {
@@ -109,7 +111,7 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
         setFilteredRecipes(request.data);
       }
     } catch (error) {
-      toast.error('Erro ao listar receitas');
+      toast.error("Erro ao listar receitas");
     }
   };
 
