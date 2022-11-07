@@ -48,7 +48,11 @@ export const InputDefault = styled.input`
   background-color: white;
   font-size: 20px;
   font-weight: 400;
-  color: #a4a4a4;
+  color: var(--Color-gray-3);
+
+  &:focus {
+    outline: 2px solid var(--Color-gray-3);
+  }
 `;
 export const InputSmall = styled.input`
   width: 100%;
@@ -61,7 +65,10 @@ export const InputSmall = styled.input`
   background-color: white;
   font-size: 20px;
   font-weight: 400;
-  color: #a4a4a4;
+  color: var(--Color-gray-3);
+  &:focus {
+    outline: 2px solid var(--Color-gray-3);
+  }
 `;
 
 export const SelectDiv = styled.div`
@@ -80,8 +87,12 @@ export const SelectDefault = styled.select`
   background-color: white;
   font-size: 20px;
   font-weight: 400;
-  color: #a4a4a4;
+  color: var(--Color-gray-3);
   border-right: 16px solid transparent;
+
+  &:focus {
+    outline: 2px solid var(--Color-gray-3);
+  }
 `;
 export const OptionDefault = styled.option`
   width: 100%;
@@ -90,7 +101,7 @@ export const OptionDefault = styled.option`
   border-radius: 12px;
   border: none;
   outline: none;
-  background-color: white;
+  background-color: var(--Color-gray-0);
   font-size: 20px;
   font-weight: 400;
 `;
@@ -133,6 +144,10 @@ export const PrepareTimeInputDiv = styled.div`
   background-color: white;
   border-radius: 16px;
   gap: 10px;
+
+  &:has(input:focus) {
+    outline: 2px solid var(--Color-gray-3);
+  }
 `;
 export const Portions = styled.div`
   min-height: 180px;
@@ -161,6 +176,9 @@ export const PortionInputDiv = styled.div`
   border-radius: 16px;
   gap: 10px;
   border: 2px solid var(--Color-brand-1);
+  &:has(input:focus) {
+    border-color: var(--Color-gray-3);
+  }
 `;
 
 export const TimeAndPortion = styled.div`
@@ -206,6 +224,18 @@ export const RecipeNameDiv = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-bottom: 10px;
+
+  & > div {
+    position: relative;
+  }
+  & > div > button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 18px;
+    right: 8px;
+    color: var(--Color-border-0);
+  }
 `;
 
 export const IngredientDiv = styled.div`
@@ -222,6 +252,17 @@ export const IngredientInputFieldset = styled.fieldset`
   display: flex;
   gap: 20px;
   border: none;
+
+  position: relative;
+
+  button {
+    background: none;
+    border: none;
+    color: var(--Color-border-0);
+    position: absolute;
+    top: 18px;
+    right: 8px;
+  }
 `;
 
 export const StepsDiv = styled.div`
@@ -231,4 +272,17 @@ export const StepsDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+
+  & > div {
+    width: 100%;
+    position: relative;
+  }
+  & > div > button {
+    background: none;
+    border: none;
+    color: var(--Color-border-0);
+    position: absolute;
+    top: 18px;
+    right: 8px;
+  }
 `;
