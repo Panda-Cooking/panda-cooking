@@ -1,3 +1,4 @@
+import HeaderMenu from "../../HeaderMenu";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { SectionEmphasis } from "./SectionEmphasis";
@@ -8,7 +9,7 @@ import { LandingPageStyled } from "./styles";
 const LandingPage = () => {
   return (
     <LandingPageStyled>
-      <Header />
+      <HeaderMenu />
       <SectionPresentations />
       <SectionOnHigh />
       <SectionEmphasis />

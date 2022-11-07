@@ -12,7 +12,8 @@ export const HeaderStyle = styled.header`
     margin: 8px 26px;
   }
 
-  div {
+  .linkHome {
+    color: var(--Color-gray-3);
     display: flex;
 
     h2 {
@@ -50,7 +51,7 @@ export const HeaderStyle = styled.header`
       transform: scale(1.6);
     }
 
-    div {
+    .linkHome {
       h2 {
         display: block;
         color: white;

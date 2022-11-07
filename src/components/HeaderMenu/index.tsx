@@ -11,10 +11,10 @@ const HeaderMenu = () => {
 
   return (
     <HeaderStyle>
-      <div>
+      <Link to="/dashboard" className='linkHome'>
         <SiFoodpanda size={45} className="mainPandaLogo"></SiFoodpanda>
         <Heading2>Panda Cooking</Heading2>
-      </div>
+      </Link>
       {user ? (
         <MenuHamb/>
       ) : (
