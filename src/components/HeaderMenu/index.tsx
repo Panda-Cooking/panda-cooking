@@ -1,7 +1,8 @@
-import { Header, Menu } from "./style"
+import { Header, Menu, StyledLink } from "./style"
 import { SiFoodpanda } from 'react-icons/si'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 const HeaderMenu = () =>{
     const [view, setView] = useState<string>('off')
@@ -31,7 +32,7 @@ const HeaderMenu = () =>{
             <Menu>
                 <div className={view}>
                     <div>
-                        <p>Editar Perfil</p>
+                        <StyledLink  to='/profile'>Editar Perfil</StyledLink>
                     </div>
                     <button>Sair</button>
                 </div>

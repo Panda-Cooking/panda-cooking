@@ -30,7 +30,7 @@ const MenuHamburguer = ({ logoutFunction }: iMenuHamburguerProps) => {
           transition={{ duration: 0.6 }}
         >
           <div className='myProfile'>
-            <Link to='/'>Meu perfíl</Link>
+            <Link to='/profile'>Meu perfíl</Link>
           </div>
           <div>
             <span onClick={() => logoutFunction()}>Sair</span>

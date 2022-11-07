@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -97,4 +98,8 @@ export const Menu = styled.aside`
             color: #343a40;
         }
     }
+`
+
+export const StyledLink = styled(Link)`
+    color: var(--Color-gray-3);
 `

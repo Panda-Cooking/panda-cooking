@@ -13,6 +13,7 @@ interface iUserInfo {
   email: string
   name: string
   id: number
+  img: string
 }
 
 interface iUserContext {
