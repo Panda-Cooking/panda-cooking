@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { GlobalStyle } from '../../../styles/Global';
+import styled from "styled-components";
+import { GlobalStyle } from "../../../styles/Global";
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -22,25 +22,23 @@ export const Main = styled.main`
 
     img {
       border-radius: 4px;
-      height: 211px;
+      height: 296px;
+      object-fit: cover;
       width: 100%;
-    }
-
-    h2 {
-      text-align: left;
-      font-weight: 700;
-      font-size: 1.4rem;
+      object-position: 10% 66%;
     }
 
     .recipeOwner {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 5px;
 
-      p {
-        font-weight: 700;
-        font-size: 1.3rem;
+      flex-wrap: wrap;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     }
 
@@ -53,24 +51,11 @@ export const Main = styled.main`
     }
 
     @media screen and (min-width: 443px) {
-      position: relative;
-      img {
-        height: 451px;
-        max-width: 1300px;
-        width: 100%;
-        border-radius: 4px;
-      }
-      .recipeOwner {
-        position: absolute;
-        top: 490px;
-        left: 85%;
-      }
       .recipeText {
         width: 80%;
       }
     }
   }
-
   .secondRecipeSection {
     width: 100%;
     display: flex;
@@ -120,7 +105,6 @@ export const Main = styled.main`
       ol {
         width: 100%;
       }
-
       ul {
         width: 100%;
       }
@@ -128,7 +112,6 @@ export const Main = styled.main`
   }
 
   .thirdRecipeSection {
-    width: 90%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -148,58 +131,86 @@ export const Main = styled.main`
         }
 
         ul {
-          li {
-            display: flex;
-            gap: 10px;
-          }
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
       }
+        ul > li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
-      p {
-        font-weight: 400;
-        font-size: 0.9rem;
+          justify-content: space-between;
+
+          gap: 16px;
+
+          background-color: var(--Color-gray-0);
+
+          padding: 16px;
+
+          border-radius: 4px;
+        }
+
+        ul > li > div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+        ul > li > div > img {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        ul > li > p {
+          align-self: flex-end;
+        }
+      }
+      @media (min-width: 600px) {
+        .coment {
+          ul > li {
+            flex-direction: row;
+          }
+          ul > li > div {
+            flex-direction: row;
+          }
+        }
       }
     }
 
     .addComentContainer {
-      position: relative;
-      textarea,
-      textarea:hover,
-      textarea:focus {
-        background-color: transparent;
+      background-color: var(--Color-gray-0);
+      border-radius: 4px;
+
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 16px;
+
+      textarea {
         border: none;
         outline: none;
-        width: 100%;
-        padding-bottom: 20px;
+        resize: none;
+        background: none;
+        width: 95%;
+      }
+      button {
+        border: none;
+        background: none;
+      }
 
-        p {
-          font-weight: 400;
-          font-size: 0.9rem;
-        }
+      button > svg {
+        width: 24px;
+        height: 24px;
       }
     }
 
     h2 {
       font-weight: 700;
       font-size: 1.5rem;
-    }
-
-    @media screen and (min-width: 443px) {
-      .comentsContainer {
-        flex-direction: row;
-
-        .coment {
-          width: 75%;
-        }
-      }
-
-      textarea {
-        resize: none;
-      }
-
-      .addComentContainer {
-        width: 60%;
-      }
     }
   }
 `;
