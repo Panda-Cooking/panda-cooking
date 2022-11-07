@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
 import panda from '../../../../src/assets/img/panda 4.png';
 import HeaderMenu from '../../HeaderMenu';
+import { Header } from '../LandingPage/Header';
 
 const Dashboard = () => {
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
