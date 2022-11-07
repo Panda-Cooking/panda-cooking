@@ -1,11 +1,11 @@
 import React from 'react';
 import { LoadingDiv } from './style';
-import loading from '../../assets/img/loading.png';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const Loader = () => {
   return (
     <LoadingDiv>
-      <img src={loading} alt='' />
+      <AiOutlineLoading3Quarters size={42}></AiOutlineLoading3Quarters>
     </LoadingDiv>
   );
 };

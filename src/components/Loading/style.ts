@@ -7,7 +7,7 @@ export const LoadingDiv = styled.div`
   justify-content: center;
   align-items: center;
 
-  img {
+  svg {
     animation: spin 3s infinite;
   }
 
