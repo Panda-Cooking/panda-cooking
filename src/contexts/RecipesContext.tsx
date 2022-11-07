@@ -30,13 +30,22 @@ export interface iRecipeComment {
 
 export interface iRecipe {
   name: string;
-  images: string[];
+  description: string;
+  category: string;
   time: string;
   portions: string;
-  category: string;
-  Ingredients: iRecipeIngredients[];
-  preparation: iRecipePreparation[];
-  comment: iRecipeComment[];
+  images: {
+    value: string;
+  }[];
+  ingredients: {
+    qtd: string;
+    name: string;
+  }[];
+  preparations: {
+    description: string;
+  }[];
+  author: iUserInfo;
+  comments: iRecipeComment[];
   userId: number;
   id: number;
 }
