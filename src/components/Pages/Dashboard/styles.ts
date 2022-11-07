@@ -5,8 +5,9 @@ export const Container = styled.div`
   a {
     text-decoration: none;
   }
-
+  
   main {
+    margin-top: 16px;
     padding: 0 26px;
 
     .filterSection {

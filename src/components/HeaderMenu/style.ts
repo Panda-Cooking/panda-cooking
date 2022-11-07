@@ -5,7 +5,6 @@ export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 16px;
 
   svg,
   a {
@@ -39,7 +38,6 @@ export const HeaderStyle = styled.header`
     }
   }
   @media screen and (min-width: 768px) {
-    margin-bottom: 26px;
     height: 90px;
 
     svg,
@@ -61,7 +59,6 @@ export const HeaderStyle = styled.header`
     }
   }
   @media screen and (min-width: 1921px) {
-    margin-bottom: 26px;
     height: 90px;
     padding: 0 23.35%;
 
