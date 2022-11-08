@@ -78,17 +78,3 @@ const RecipesList = () => {
 };
 
 export default RecipesList;
-
-/*
-<ul>
-        {recipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipeId={recipe.id}
-            name={recipe.name}
-            category={recipe.category}
-            images={recipe.images}
-          ></RecipeCard>
-        ))}
-      </ul>
-*/
