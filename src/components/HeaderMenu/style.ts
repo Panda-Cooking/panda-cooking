@@ -6,7 +6,7 @@ export const HeaderStyle = styled.header`
     justify-content: space-between;
     align-items: center;
 
-    height: 56px;
+    height: 64px;
     padding: 0 16px;
   }
   background-color: var(--Color-brand-2);

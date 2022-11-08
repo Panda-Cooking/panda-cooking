@@ -11,10 +11,12 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper";
+import { Mousewheel, Pagination } from "swiper";
 import { Heading2, Heading3, Text2 } from "../../../styles/typography";
 import { motion } from "framer-motion";
 import Loading from "../../Loading";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const RecipesPage = () => {
   const { user } = useContext(userContext);
@@ -87,16 +89,19 @@ const RecipesPage = () => {
       transition={{ duration: 0.4, ease: "easeInOut" }}
     >
       <Container>
-        <Main>
+        <Main disabled={user ? false : true}>
           <section className="firstRecipeSection">
             {recipe ? (
               <div>
                 <Swiper
+                  pagination={{
+                    clickable: true,
+                  }}
                   mousewheel={true}
                   grabCursor={true}
                   slidesPerView={1}
                   spaceBetween={30}
-                  modules={[Mousewheel]}
+                  modules={[Mousewheel, Pagination]}
                 >
                   {recipe?.images?.map((image, index) => (
                     <SwiperSlide key={index}>
@@ -111,17 +116,10 @@ const RecipesPage = () => {
             <div className="recipeOwner">
               <Heading2>{recipe?.name}</Heading2>
               <div>
-                {user ? (
-                  <div>
-                    <Heading3>Autor:</Heading3>
-                    <img src={user?.img} alt="user__image" />
-                  </div>
-                ) : (
-                  <>
-                    <Heading3>Autor: </Heading3>
-                    <BsPerson size={25} />
-                  </>
-                )}
+                <div>
+                  <Heading3>Autor:</Heading3>
+                  <img src={recipe?.author.img} alt="user__image" />
+                </div>
               </div>
             </div>
             <div className="recipeText">
