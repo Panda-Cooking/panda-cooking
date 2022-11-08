@@ -10,6 +10,7 @@ const RecipesList = () => {
   const {
     recipes,
     filteredRecipes,
+    categoryEmpty,
     setRecipes,
     canObserve,
     recipesPayload,
@@ -47,27 +48,31 @@ const RecipesList = () => {
         <Heading3>Lista de receitas</Heading3>
       </div>
       {recipes.length || filteredRecipes.length ? (
-        <ul>
-          {filteredRecipes.length
-            ? filteredRecipes.map((recipe) => (
-                <RecipeCard
-                  key={recipe.id}
-                  recipeId={recipe.id}
-                  name={recipe.name}
-                  category={recipe.category}
-                  images={recipe.images}
-                ></RecipeCard>
-              ))
-            : recipes.map((recipe) => (
-                <RecipeCard
-                  key={recipe.id}
-                  recipeId={recipe.id}
-                  name={recipe.name}
-                  category={recipe.category}
-                  images={recipe.images}
-                ></RecipeCard>
-              ))}
-        </ul>
+        categoryEmpty ? (
+          <h2>Não há receitas desta categoria</h2>
+        ) : (
+          <ul>
+            {filteredRecipes.length
+              ? filteredRecipes.map((recipe) => (
+                  <RecipeCard
+                    key={recipe.id}
+                    recipeId={recipe.id}
+                    name={recipe.name}
+                    category={recipe.category}
+                    images={recipe.images}
+                  ></RecipeCard>
+                ))
+              : recipes.map((recipe) => (
+                  <RecipeCard
+                    key={recipe.id}
+                    recipeId={recipe.id}
+                    name={recipe.name}
+                    category={recipe.category}
+                    images={recipe.images}
+                  ></RecipeCard>
+                ))}
+          </ul>
+        )
       ) : (
         <Loader></Loader>
       )}
@@ -78,17 +83,3 @@ const RecipesList = () => {
 };
 
 export default RecipesList;
-
-/*
-<ul>
-        {recipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipeId={recipe.id}
-            name={recipe.name}
-            category={recipe.category}
-            images={recipe.images}
-          ></RecipeCard>
-        ))}
-      </ul>
-*/

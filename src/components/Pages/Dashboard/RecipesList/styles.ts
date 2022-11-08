@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const RecipesListContainer = styled.div`
   margin-top: 26px;
 
+  h2 {
+    text-align: center;
+  }
+
   #div1 {
     background: rgb(255, 119, 135);
     background: radial-gradient(

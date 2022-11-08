@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 interface iRecipeCardProps {
   name: string;
   category: string;
-  images?: string[];
+  images: {
+    value: string;
+  }[];
   recipeId: number;
 }
 
@@ -17,7 +19,7 @@ const RecipeCard = ({ name, category, images, recipeId }: iRecipeCardProps) => {
 
   return (
     <li onClick={(e) => navigateToRecipe(recipeId.toString())}>
-      <img src={images && images[0]} alt="Imagem de receita" />
+      <img src={images && images[0].value} alt='Imagem de receita' />
       <div>
         <Heading3>{name}</Heading3>
         <div>
