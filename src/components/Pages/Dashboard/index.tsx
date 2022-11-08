@@ -10,13 +10,14 @@ import { useRecipeContext } from '../../../contexts/RecipesContext';
 import panda from '../../../../src/assets/img/panda 4.png';
 import HeaderMenu from '../../HeaderMenu';
 import { Header } from '../LandingPage/Header';
+import Swiper from 'swiper';
 
 const Dashboard = () => {
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
 
   return (
     <Container>
-      <HeaderMenu/>
+      <HeaderMenu />
       <main>
         <section className='filterSection'>
           <div id='fs1'>

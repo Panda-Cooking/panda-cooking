@@ -81,14 +81,35 @@ export const Container = styled.div`
 
       ul {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 8px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 14px;
+        overflow-y: auto;
+
+        ::-webkit-scrollbar {
+          height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 7px;
+          box-shadow: inset 0px 0px 5px lightgray;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: var(--Color-brand-1);
+          border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: var(--Color-brand-2);
+        }
 
         li {
           background-color: var(--Color-brand-1);
           height: 28px;
-          width: 100px;
+          min-width: 100px;
+          padding: 0 10px;
           border-radius: 16px;
           display: flex;
           justify-content: center;
@@ -96,6 +117,7 @@ export const Container = styled.div`
           font-weight: 700;
           font-size: 14px;
           color: white;
+          margin-bottom: 6px;
         }
 
         .filterAll {
@@ -198,13 +220,6 @@ export const Container = styled.div`
       li:not(:hover) {
         transition: 500ms;
       }
-    }
-  }
-
-  @media screen and (min-width: 1921px) {
-    main {
-      padding: 0 23.35%;
-      min-height: 87vh;
     }
   }
 `;
