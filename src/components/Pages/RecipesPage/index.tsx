@@ -6,6 +6,7 @@ import HeaderMenu from "../../HeaderMenu";
 import api from "../../../services/api";
 
 import {
+  iRecipe,
   iRecipeComment,
   iRecipeIngredients,
   iRecipePreparation,
@@ -19,20 +20,6 @@ import { Mousewheel } from "swiper";
 import { Heading2, Heading3, Text2 } from "../../../styles/typography";
 
 // import { Container, Header } from './styles';
-
-interface iRecipe {
-  name: string;
-  images: string[] | undefined;
-  time: string;
-  portions: string;
-  category: string;
-  ingredients: iRecipeIngredients[];
-  comments: iRecipeComment[] | [];
-  preparations: iRecipePreparation[];
-  description: string;
-  userId: number;
-  id: number;
-}
 
 const RecipesPage = () => {
   const { user } = useContext(userContext);
@@ -98,7 +85,6 @@ const RecipesPage = () => {
     })();
   }, []);
 
-  console.log(recipe);
   return (
     <Container>
       <HeaderMenu />
@@ -114,7 +100,7 @@ const RecipesPage = () => {
             >
               {recipe?.images?.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <img src={image} alt={recipe?.name} />
+                  <img src={image.value} alt={recipe?.name} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -164,7 +150,7 @@ const RecipesPage = () => {
           <div className="comentsContainer">
             <div className="coment">
               <ul>
-                {recipe?.comments.map((comment, index) => (
+                {recipe?.comments?.map((comment, index) => (
                   <li key={index}>
                     <div>
                       {comment.user.img ? (

@@ -128,6 +128,7 @@ const RecipesSingUp = () => {
   const sumbitForm = (data: iRecipe) => {
     const reqBody = {
       ...data,
+      comments: [],
       userId: user?.id,
       author: user,
     };
