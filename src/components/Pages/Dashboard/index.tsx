@@ -1,40 +1,42 @@
-import React, { useEffect } from "react";
-import { SiFoodpanda } from "react-icons/si";
-import { BsUpload } from "react-icons/bs";
-import { Text2 } from "../../../styles/typography";
+import React, { useEffect } from 'react'
+import { SiFoodpanda } from 'react-icons/si'
+import { BsUpload } from 'react-icons/bs'
+import { Text2 } from '../../../styles/typography'
 
-import { Container } from "./styles";
-import RecipesList from "./RecipesList";
-import { Link } from "react-router-dom";
-import { useRecipeContext } from "../../../contexts/RecipesContext";
-import panda from "../../../../src/assets/img/panda 4.png";
-import { Swiper } from "swiper/react";
-import { SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper";
+import { Container } from './styles'
+import RecipesList from './RecipesList'
+import { Link } from 'react-router-dom'
+import { useRecipeContext } from '../../../contexts/RecipesContext'
+import panda from '../../../../src/assets/img/panda 4.png'
+import { Swiper } from 'swiper/react'
+import { SwiperSlide } from 'swiper/react'
+import { Mousewheel } from 'swiper'
 
 const Dashboard = () => {
   const categories = [
-    "Todos",
-    "Bolos",
-    "Carnes",
-    "Aves",
-    "Peixes",
-    "Sobremesa",
-    "Massas",
-    "Saladas",
-    "Lanches",
-    "Sopas",
-    "Bebidas",
-  ];
+    'Todos',
+    'Bolos',
+    'Carnes',
+    'Aves',
+    'Peixes',
+    'Sobremesa',
+    'Massas',
+    'Saladas',
+    'Lanches',
+    'Sopas',
+    'Bebidas',
+  ]
 
-  const { getFilteredRecipes, setSearchParam } = useRecipeContext();
+  const { getFilteredRecipes, setSearchParam } = useRecipeContext()
 
   return (
     <Container>
       <main>
         <section className="filterSection">
           <div id="fs1">
-            <SiFoodpanda size={30} id="miniLogo"></SiFoodpanda>
+            <Link to="/">
+              <SiFoodpanda size={30} id="miniLogo"></SiFoodpanda>
+            </Link>
             <div id="fs4">
               <img src={panda} alt="" />
               <div id="fs2">
@@ -45,7 +47,7 @@ const Dashboard = () => {
               </div>
               <div className="searchBar" id="fs3">
                 <input
-                  onChange={(e) => setSearchParam(e.target.value)}
+                  onChange={e => setSearchParam(e.target.value)}
                   type="text"
                   placeholder="Pesquisar..."
                 />
@@ -73,9 +75,9 @@ const Dashboard = () => {
             >
               {categories.map((category, index) => (
                 <SwiperSlide
-                  className={index < 1 ? "filterAll" : ""}
+                  className={index < 1 ? 'filterAll' : ''}
                   key={category}
-                  onClick={(e) =>
+                  onClick={e =>
                     getFilteredRecipes(
                       (e.target as HTMLTextAreaElement).innerText
                     )
@@ -90,7 +92,7 @@ const Dashboard = () => {
         <RecipesList></RecipesList>
       </main>
     </Container>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

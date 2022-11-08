@@ -25,6 +25,7 @@ export const Container = styled.div`
 
         #miniLogo {
           display: none;
+          color: var(--Color-gray-3);
         }
       }
 
