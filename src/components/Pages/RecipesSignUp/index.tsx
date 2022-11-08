@@ -44,6 +44,7 @@ import * as yup from "yup";
 
 import api from "../../../services/api";
 import { Navigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const RecipesSingUp = () => {
   const { user } = useUserContext();
@@ -151,161 +152,174 @@ const RecipesSingUp = () => {
       {!user ? (
         <Navigate to="/signIn" replace={true} />
       ) : (
-        <Container>
-          <Main>
-            <Form onSubmit={handleSubmit(sumbitForm)}>
-              <FormContainer>
-                <TitleDiv>
-                  <Heading3>
-                    <MdOutlineReceiptLong /> ENVIAR SUA RECEITA
-                  </Heading3>
-                </TitleDiv>
+        <motion.div
+          animate={{ opacity: [0, 1] }}
+          exit={{ opacity: [1, 0] }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <Container>
+            <Main>
+              <Form onSubmit={handleSubmit(sumbitForm)}>
+                <FormContainer>
+                  <TitleDiv>
+                    <Heading3>
+                      <MdOutlineReceiptLong /> ENVIAR SUA RECEITA
+                    </Heading3>
+                  </TitleDiv>
 
-                <RecipeNameDiv>
-                  <InputDefault
-                    type="text"
-                    placeholder="Nome da receita"
-                    {...register("name")}
-                  />
-                  <InputDefault
-                    type="text"
-                    placeholder="Descrição"
-                    {...register("description")}
-                  />
-                  {inputsImages.map((field, index) => (
-                    <div key={field.id}>
-                      <InputDefault
-                        type="text"
-                        placeholder="Url da imagem"
-                        {...register(`images.${index}.value` as const)}
-                      />
-                      {index > 0 && (
-                        <button onClick={() => removeInputImage(index)}>
-                          <TiDelete size={24} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <ButtonDefault type="button" onClick={() => addInputImage()}>
-                    <Heading3Span>+ adicionar mais imagens</Heading3Span>
-                  </ButtonDefault>
-                </RecipeNameDiv>
-
-                <TimeAndPortion>
-                  <PrepareTime>
-                    <Heading2>Tempo de preparo:</Heading2>
-                    <PrepareTimeInputDiv>
-                      <MdOutlineTimer size={48} color="#FF8787" />
-                      <PrepareTimeInput
-                        type="number"
-                        placeholder="0"
-                        {...register("time")}
-                      />
-                    </PrepareTimeInputDiv>
-                    <Heading3>minutos</Heading3>
-                  </PrepareTime>
-                  <Portions>
-                    <Heading2>Porções:</Heading2>
-                    <PortionInputDiv>
-                      <MdOutlineDinnerDining size={48} color="#FF8787" />
-                      <PrepareTimeInput
-                        type="number"
-                        placeholder="0"
-                        {...register("portions")}
-                      />
-                    </PortionInputDiv>
-                  </Portions>
-                </TimeAndPortion>
-
-                <SelectDiv>
-                  <SelectDefault {...register("category")}>
-                    <OptionDefault value="">
-                      Selecione uma categoria
-                    </OptionDefault>
-                    <OptionDefault value="Bolos">Bolos</OptionDefault>
-                    <OptionDefault value="Carnes">Carnes</OptionDefault>
-                    <OptionDefault value="Aves">Aves</OptionDefault>
-                    <OptionDefault value="Peixes">Peixes</OptionDefault>
-                    <OptionDefault value="Sobremesas">Sobremesas</OptionDefault>
-                    <OptionDefault value="Massas">Massas</OptionDefault>
-                    <OptionDefault value="Saladas">Saladas</OptionDefault>
-                    <OptionDefault value="Lanches">Lanches</OptionDefault>
-                    <OptionDefault value="Sopas">Sopas</OptionDefault>
-                    <OptionDefault value="Bebidas">Bebidas</OptionDefault>
-                  </SelectDefault>
-                </SelectDiv>
-
-                <IngredientDiv>
-                  <Heading3>
-                    <MdOutlineKitchen /> Ingredientes
-                  </Heading3>
-
-                  {inputIngredient.map((el, index) => (
-                    <IngredientInputFieldset key={el.id}>
-                      <InputSmall
-                        type="text"
-                        placeholder="1 1/2"
-                        {...register(`ingredients.${index}.qtd` as const)}
-                      />
-                      <InputDefault
-                        type="text"
-                        placeholder="xícara (chá) de ..."
-                        {...register(`ingredients.${index}.name` as const)}
-                      />
-                      {index > 0 && (
-                        <button onClick={() => removeInputIngredient(index)}>
-                          <TiDelete size={24} />
-                        </button>
-                      )}
-                    </IngredientInputFieldset>
-                  ))}
-
-                  <ButtonDefault
-                    type="button"
-                    onClick={() => appendInputIngredient({ qtd: "", name: "" })}
-                  >
-                    <Heading3Span>+ adicionar mais ingredientes</Heading3Span>
-                  </ButtonDefault>
-                </IngredientDiv>
-
-                <StepsDiv>
-                  <Heading3>
-                    <GiCookingPot /> Modo de preparo
-                  </Heading3>
-
-                  {inputSteps.map((el, index) => (
-                    <div key={el.id}>
-                      <InputDefault
-                        placeholder="Ex: Primeiro bata os ovos com a farinha..."
-                        {...register(
-                          `preparations.${index}.description` as const
+                  <RecipeNameDiv>
+                    <InputDefault
+                      type="text"
+                      placeholder="Nome da receita"
+                      {...register("name")}
+                    />
+                    <InputDefault
+                      type="text"
+                      placeholder="Descrição"
+                      {...register("description")}
+                    />
+                    {inputsImages.map((field, index) => (
+                      <div key={field.id}>
+                        <InputDefault
+                          type="text"
+                          placeholder="Url da imagem"
+                          {...register(`images.${index}.value` as const)}
+                        />
+                        {index > 0 && (
+                          <button onClick={() => removeInputImage(index)}>
+                            <TiDelete size={24} />
+                          </button>
                         )}
-                      />
-                      {index > 0 && (
-                        <button onClick={() => removeInputSteps(index)}>
-                          <TiDelete size={24} />
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <ButtonDefault
-                    type="button"
-                    onClick={() => appendInputSteps({ description: "" })}
-                  >
-                    <Heading3Span>+ adicionar proximo passo</Heading3Span>
-                  </ButtonDefault>
-                </StepsDiv>
+                      </div>
+                    ))}
+                    <ButtonDefault
+                      type="button"
+                      onClick={() => addInputImage()}
+                    >
+                      <Heading3Span>+ adicionar mais imagens</Heading3Span>
+                    </ButtonDefault>
+                  </RecipeNameDiv>
 
-                <ButtonSubmit>
-                  <Heading3Span color="white">
-                    <MdDone />
-                    Enviar
-                  </Heading3Span>
-                </ButtonSubmit>
-              </FormContainer>
-            </Form>
-          </Main>
-        </Container>
+                  <TimeAndPortion>
+                    <PrepareTime>
+                      <Heading2>Tempo de preparo:</Heading2>
+                      <PrepareTimeInputDiv>
+                        <MdOutlineTimer size={48} color="#FF8787" />
+                        <PrepareTimeInput
+                          type="number"
+                          placeholder="0"
+                          {...register("time")}
+                        />
+                      </PrepareTimeInputDiv>
+                      <Heading3>minutos</Heading3>
+                    </PrepareTime>
+                    <Portions>
+                      <Heading2>Porções:</Heading2>
+                      <PortionInputDiv>
+                        <MdOutlineDinnerDining size={48} color="#FF8787" />
+                        <PrepareTimeInput
+                          type="number"
+                          placeholder="0"
+                          {...register("portions")}
+                        />
+                      </PortionInputDiv>
+                    </Portions>
+                  </TimeAndPortion>
+
+                  <SelectDiv>
+                    <SelectDefault {...register("category")}>
+                      <OptionDefault value="">
+                        Selecione uma categoria
+                      </OptionDefault>
+                      <OptionDefault value="Bolos">Bolos</OptionDefault>
+                      <OptionDefault value="Carnes">Carnes</OptionDefault>
+                      <OptionDefault value="Aves">Aves</OptionDefault>
+                      <OptionDefault value="Peixes">Peixes</OptionDefault>
+                      <OptionDefault value="Sobremesas">
+                        Sobremesas
+                      </OptionDefault>
+                      <OptionDefault value="Massas">Massas</OptionDefault>
+                      <OptionDefault value="Saladas">Saladas</OptionDefault>
+                      <OptionDefault value="Lanches">Lanches</OptionDefault>
+                      <OptionDefault value="Sopas">Sopas</OptionDefault>
+                      <OptionDefault value="Bebidas">Bebidas</OptionDefault>
+                    </SelectDefault>
+                  </SelectDiv>
+
+                  <IngredientDiv>
+                    <Heading3>
+                      <MdOutlineKitchen /> Ingredientes
+                    </Heading3>
+
+                    {inputIngredient.map((el, index) => (
+                      <IngredientInputFieldset key={el.id}>
+                        <InputSmall
+                          type="text"
+                          placeholder="1 1/2"
+                          {...register(`ingredients.${index}.qtd` as const)}
+                        />
+                        <InputDefault
+                          type="text"
+                          placeholder="xícara (chá) de ..."
+                          {...register(`ingredients.${index}.name` as const)}
+                        />
+                        {index > 0 && (
+                          <button onClick={() => removeInputIngredient(index)}>
+                            <TiDelete size={24} />
+                          </button>
+                        )}
+                      </IngredientInputFieldset>
+                    ))}
+
+                    <ButtonDefault
+                      type="button"
+                      onClick={() =>
+                        appendInputIngredient({ qtd: "", name: "" })
+                      }
+                    >
+                      <Heading3Span>+ adicionar mais ingredientes</Heading3Span>
+                    </ButtonDefault>
+                  </IngredientDiv>
+
+                  <StepsDiv>
+                    <Heading3>
+                      <GiCookingPot /> Modo de preparo
+                    </Heading3>
+
+                    {inputSteps.map((el, index) => (
+                      <div key={el.id}>
+                        <InputDefault
+                          placeholder="Ex: Primeiro bata os ovos com a farinha..."
+                          {...register(
+                            `preparations.${index}.description` as const
+                          )}
+                        />
+                        {index > 0 && (
+                          <button onClick={() => removeInputSteps(index)}>
+                            <TiDelete size={24} />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                    <ButtonDefault
+                      type="button"
+                      onClick={() => appendInputSteps({ description: "" })}
+                    >
+                      <Heading3Span>+ adicionar proximo passo</Heading3Span>
+                    </ButtonDefault>
+                  </StepsDiv>
+
+                  <ButtonSubmit>
+                    <Heading3Span color="white">
+                      <MdDone />
+                      Enviar
+                    </Heading3Span>
+                  </ButtonSubmit>
+                </FormContainer>
+              </Form>
+            </Main>
+          </Container>
+        </motion.div>
       )}
     </>
   );
