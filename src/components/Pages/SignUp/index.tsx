@@ -17,6 +17,7 @@ import pandaImg from "../../../assets/img/panda-Register.png";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../../contexts/AuthContext";
+import { motion } from "framer-motion";
 
 export interface IUserRegister {
   name: string;
@@ -55,42 +56,48 @@ const SignUp = () => {
   });
 
   return (
-    <Main>
-      <Container>
-        <StyledImg src={pandaImg} alt="Imagem de Registro"></StyledImg>
-        <StyledForm onSubmit={handleSubmit(signUpFunction)}>
-          <SiFoodpanda style={StyledIcon} />
-          <Heading1>Panda Cooking</Heading1>
-          <Heading3>Registre-se</Heading3>
-          <StyledInput placeholder="Nome" type="text" {...register("name")} />
-          <Error>{errors.name?.message}</Error>
-          <StyledInput
-            placeholder="E-Mail"
-            type="email"
-            {...register("email")}
-          />
-          <Error>{errors.email?.message}</Error>
-          <StyledInput
-            placeholder="Senha"
-            type="password"
-            {...register("password")}
-          />
-          <Error>{errors.password?.message}</Error>
-          <StyledInput placeholder="Confirme sua senha" type="password" />
-          <Error>{errors.confirmPassword?.message}</Error>
-          <StyledInput
-            placeholder="Imagem de perfil"
-            type="text"
-            {...register("img")}
-          />
-          <Error>{errors.img?.message}</Error>
-          <Link to="/signIn" relative="path">
-            <StyledP>Já possuí uma conta? Faça login aqui!</StyledP>
-          </Link>
-          <StyledBtn type="submit">Registrar</StyledBtn>
-        </StyledForm>
-      </Container>
-    </Main>
+    <motion.div
+      animate={{ opacity: [0, 1] }}
+      exit={{ opacity: [1, 0] }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+    >
+      <Main>
+        <Container>
+          <StyledImg src={pandaImg} alt="Imagem de Registro"></StyledImg>
+          <StyledForm onSubmit={handleSubmit(signUpFunction)}>
+            <SiFoodpanda style={StyledIcon} />
+            <Heading1>Panda Cooking</Heading1>
+            <Heading3>Registre-se</Heading3>
+            <StyledInput placeholder="Nome" type="text" {...register("name")} />
+            <Error>{errors.name?.message}</Error>
+            <StyledInput
+              placeholder="E-Mail"
+              type="email"
+              {...register("email")}
+            />
+            <Error>{errors.email?.message}</Error>
+            <StyledInput
+              placeholder="Senha"
+              type="password"
+              {...register("password")}
+            />
+            <Error>{errors.password?.message}</Error>
+            <StyledInput placeholder="Confirme sua senha" type="password" />
+            <Error>{errors.confirmPassword?.message}</Error>
+            <StyledInput
+              placeholder="Imagem de perfil"
+              type="text"
+              {...register("img")}
+            />
+            <Error>{errors.img?.message}</Error>
+            <Link to="/signIn" relative="path">
+              <StyledP>Já possuí uma conta? Faça login aqui!</StyledP>
+            </Link>
+            <StyledBtn type="submit">Registrar</StyledBtn>
+          </StyledForm>
+        </Container>
+      </Main>
+    </motion.div>
   );
 };
 
