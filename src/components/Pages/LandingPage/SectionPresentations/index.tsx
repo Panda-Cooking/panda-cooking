@@ -9,12 +9,7 @@ export const SectionPresentations = () => {
       <div className="container">
         <img src={pandaLogo} alt="logo" />
         <div className="box-infos">
-          <Text1 color="white">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </Text1>
+          <Text1 color="white">Não há ingrediente secreto. É só você.</Text1>
 
           <Heading3 color="white">Acessar receitas agora</Heading3>
 
