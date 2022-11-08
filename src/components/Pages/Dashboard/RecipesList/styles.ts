@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RecipesListContainer = styled.div`
   margin-top: 26px;
@@ -104,8 +104,8 @@ export const RecipesListContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     #div1 {
-      margin-top: 50px;
-      margin-bottom: 35px;
+      margin-top: 16px;
+      margin-bottom: 16px;
     }
   }
 `;
