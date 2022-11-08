@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: var(--Color-gray-0);
@@ -7,9 +7,7 @@ export const Container = styled.div`
   }
 
   main {
-    margin-top: 16px;
-    padding: 0 26px;
-
+    padding: 32px 16px;
     .filterSection {
       #fs1 {
         background: rgb(255, 119, 135);
@@ -49,13 +47,15 @@ export const Container = styled.div`
 
       #fs3 {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
 
         input {
+          width: 100%;
           height: 40px;
           border-radius: 30px;
           border: none;
-          padding: 14px;
+          padding-left: 16px;
           margin-right: 10px;
         }
 
@@ -79,60 +79,28 @@ export const Container = styled.div`
         }
       }
 
-      ul {
+      .swiper-slide {
+        background-color: var(--Color-brand-1);
+        height: 32px;
+        border-radius: 16px;
         display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 14px;
-        overflow-y: auto;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 12px;
+        color: white;
+      }
 
-        ::-webkit-scrollbar {
-          height: 5px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 7px;
-          box-shadow: inset 0px 0px 5px lightgray;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: var(--Color-brand-1);
-          border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: var(--Color-brand-2);
-        }
-
-        li {
-          background-color: var(--Color-brand-1);
-          height: 28px;
-          min-width: 100px;
-          padding: 0 10px;
-          border-radius: 16px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: 700;
-          font-size: 14px;
-          color: white;
-          margin-bottom: 6px;
-        }
-
-        .filterAll {
-          background-color: var(--Color-gray-3);
-        }
+      .filterAll {
+        background-color: var(--Color-gray-3);
       }
     }
   }
 
   @media screen and (min-width: 768px) {
     main {
-      margin: 26px auto;
-      max-width: 1300px;
       width: 100%;
-      min-height: 87vh;
+      min-height: 100vh;
 
       .filterSection {
         #fs1 {
@@ -177,7 +145,6 @@ export const Container = styled.div`
           margin-left: 20px;
 
           input {
-            width: 100%;
             border: 2px solid var(--Color-brand-1);
           }
         }
@@ -220,6 +187,13 @@ export const Container = styled.div`
       li:not(:hover) {
         transition: 500ms;
       }
+    }
+  }
+  @media (min-width: 1024px) {
+    main {
+      padding: 32px 0;
+      max-width: 1024px;
+      margin: 0 auto;
     }
   }
 `;

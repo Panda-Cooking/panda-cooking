@@ -3,15 +3,30 @@ import { SiFoodpanda } from "react-icons/si";
 import { BsUpload } from "react-icons/bs";
 import { Text2 } from "../../../styles/typography";
 
-
-import { Container } from './styles';
-import RecipesList from './RecipesList';
-import { Link } from 'react-router-dom';
-import { useRecipeContext } from '../../../contexts/RecipesContext';
-import panda from '../../../../src/assets/img/panda 4.png';
-
+import { Container } from "./styles";
+import RecipesList from "./RecipesList";
+import { Link } from "react-router-dom";
+import { useRecipeContext } from "../../../contexts/RecipesContext";
+import panda from "../../../../src/assets/img/panda 4.png";
+import { Swiper } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
+import { Mousewheel } from "swiper";
 
 const Dashboard = () => {
+  const categories = [
+    "Todos",
+    "Bolos",
+    "Carnes",
+    "Aves",
+    "Peixes",
+    "Sobremesa",
+    "Massas",
+    "Saladas",
+    "Lanches",
+    "Sopas",
+    "Bebidas",
+  ];
+
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
 
   return (
@@ -37,23 +52,40 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <ul
-            onClick={(e) =>
-              getFilteredRecipes((e.target as HTMLTextAreaElement).innerText)
-            }
-          >
-            <li className="filterAll">Todos</li>
-            <li>Bolos</li>
-            <li>Carnes</li>
-            <li>Aves</li>
-            <li>Peixes</li>
-            <li>Sobremesa</li>
-            <li>Massas</li>
-            <li>Saladas</li>
-            <li>Lanches</li>
-            <li>Sopas</li>
-            <li>Bebidas</li>
-          </ul>
+
+          <div>
+            <Swiper
+              mousewheel={true}
+              grabCursor={true}
+              slidesPerView={3}
+              spaceBetween={20}
+              breakpoints={{
+                600: {
+                  slidesPerView: 5,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 7,
+                  spaceBetween: 20,
+                },
+              }}
+              modules={[Mousewheel]}
+            >
+              {categories.map((category, index) => (
+                <SwiperSlide
+                  className={index < 1 ? "filterAll" : ""}
+                  key={category}
+                  onClick={(e) =>
+                    getFilteredRecipes(
+                      (e.target as HTMLTextAreaElement).innerText
+                    )
+                  }
+                >
+                  {category}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </section>
         <RecipesList></RecipesList>
       </main>
