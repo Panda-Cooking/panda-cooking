@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { GlobalStyle } from "../../../styles/Global";
+
+interface iMainProps {
+  disabled: Boolean;
+}
 
 export const Container = styled.div`
   max-width: 100vw;
@@ -11,8 +14,12 @@ export const Main = styled.main`
   flex-direction: column;
   margin: 0 auto;
   gap: 20px;
-  max-width: 920px;
-  padding: 20px;
+  max-width: 1024px;
+  padding: 32px 16px;
+
+  @media (min-width: 1024px) {
+    padding: 32px 0;
+  }
 
   .firstRecipeSection {
     width: 100%;
@@ -152,7 +159,7 @@ export const Main = styled.main`
 
         gap: 16px;
 
-        background-color: var(--Color-gray-0);
+        background-color: var(--Color-brand-2);
 
         padding: 16px;
 
@@ -190,12 +197,19 @@ export const Main = styled.main`
   }
 
   .addComentContainer {
-    background-color: var(--Color-gray-0);
+    background-color: var(
+      ${({ disabled }: iMainProps) =>
+        disabled ? "--Color-gray-1" : "--Color-brand-2"}
+    );
     border-radius: 4px;
 
     display: flex;
     justify-content: space-between;
-    padding: 8px 16px;
+    align-items: center;
+    padding: 0 16px;
+
+    cursor: ${({ disabled }: iMainProps) =>
+      disabled ? "not-allowed" : "text"};
 
     textarea {
       border: none;
@@ -203,13 +217,21 @@ export const Main = styled.main`
       resize: none;
       background: none;
       width: 95%;
+      padding-top: 16px;
+      color: var(--Color-gray-3);
+      font-family: "Inter", sans-serif;
+      cursor: ${({ disabled }: iMainProps) =>
+        disabled ? "not-allowed" : "text"};
     }
     button {
       border: none;
       background: none;
+      cursor: ${({ disabled }: iMainProps) =>
+        disabled ? "not-allowed" : "pointer"};
     }
 
     button > svg {
+      color: var(--Color-gray-3);
       width: 24px;
       height: 24px;
     }
