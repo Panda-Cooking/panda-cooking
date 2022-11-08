@@ -5,7 +5,7 @@ export const Container = styled.div`
   a {
     text-decoration: none;
   }
-  
+
   main {
     margin-top: 16px;
     padding: 0 26px;
@@ -106,9 +106,10 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-
     main {
-      padding: 0 14%;
+      margin: 26px auto;
+      max-width: 1300px;
+      width: 100%;
       min-height: 87vh;
 
       .filterSection {
@@ -201,7 +202,6 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1921px) {
-
     main {
       padding: 0 23.35%;
       min-height: 87vh;

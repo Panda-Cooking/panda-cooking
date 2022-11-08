@@ -35,13 +35,24 @@ export const RecipesListContainer = styled.div`
     justify-content: flex-start;
 
     li {
-      //height: 264px;
-      width: 321px;
+      width: 100%;
       border-radius: 12px;
       background-color: #ffffff;
       box-shadow: 4px 5px 6px gray;
       position: relative;
       cursor: pointer;
+
+      @media screen and (min-width: 550px) {
+        width: calc((100% - 26px) / 2);
+      }
+
+      @media screen and (min-width: 850px) {
+        width: calc((100% - 52px) / 3);
+      }
+
+      @media screen and (min-width: 1200px) {
+        width: calc((100% - 78px) / 4);
+      }
 
       img {
         height: 190px;
