@@ -13,8 +13,6 @@ export const LoginStyle = styled.section`
     rgba(255, 255, 255, 1) 30%,
     rgba(255, 135, 135, 1) 100%
   );
-  .pandaStyle {
-  }
   .divLogin {
     display: flex;
     flex-direction: column;
@@ -36,6 +34,25 @@ export const LoginStyle = styled.section`
 
       svg {
         font-size: 60px;
+      }
+    }
+    .divArrowLeft {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .arrowLeft {
+        background-color: var(--Color-brand-1);
+        color: var(--Color-white);
+        border-radius: 50%;
+        border: 1px solid var(--Color-brand-1);
+
+        &:hover {
+          background-color: var(--Color-brand-3);
+          color: var(--Color-brand-1);
+        }
+        svg {
+          font-size: 20px;
+        }
       }
     }
 
@@ -63,7 +80,7 @@ export const LoginStyle = styled.section`
         border-radius: 10px;
         padding: 0.7rem 1rem;
         font-size: 1rem;
-        background-color: var(--Color-brand-3);        
+        background-color: var(--Color-brand-3);
 
         &:hover {
           border: 2px solid var(--Color-brand-1);
@@ -104,6 +121,11 @@ export const LoginStyle = styled.section`
       .logoHeader {
         svg {
           font-size: 100px;
+        }
+        .arrowLeft {
+          svg {
+            font-size: 30px;
+          }
         }
       }
       form {

@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import 'react-toastify/dist/ReactToastify.css'
 import { useUserContext } from '../../../contexts/AuthContext'
 import { Heading1, Heading2 } from '../../../styles/typography'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 export interface iUserLogin {
   email: string
@@ -33,6 +34,11 @@ const SignIn = () => {
       </figure>
       <div className="divLogin">
         <div className="logoHeader">
+          <div className="divArrowLeft">
+            <Link to="/" className="arrowLeft">
+              <AiOutlineArrowLeft />
+            </Link>
+          </div>
           <SiFoodpanda />
           <Heading1>Panda Cooking</Heading1>
           <Heading2>Login</Heading2>
