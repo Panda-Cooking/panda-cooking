@@ -46,7 +46,7 @@ const AuthContext = ({ children }: iUserProviderProps) => {
     try {
       await api.post("/register", data);
       toast.success("conta criada com sucesso!");
-      navigate("/", { replace: true });
+      navigate("/signIn", { replace: true });
     } catch (error) {
       toast.error("conta já existente!");
     }

@@ -1,5 +1,5 @@
-import { Heading3, Text2 } from '../../../../styles/typography';
-import { useNavigate } from 'react-router-dom';
+import { Heading3, Text2 } from "../../../../styles/typography";
+import { useNavigate } from "react-router-dom";
 
 interface iRecipeCardProps {
   name: string;

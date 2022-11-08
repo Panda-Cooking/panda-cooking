@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const HambStyle = styled.div`
   display: flex;
@@ -7,53 +7,56 @@ export const HambStyle = styled.div`
 
   svg {
     cursor: pointer;
+    color: var(--Color-gray-3);
   }
 
-  section {
-    background-color: var(--Color-brand-1);
-    color: var(--Color-white);
-    width: 100%;
-    position: absolute;
-    top: 53px;
+  .menu-body {
+    background-color: var(--Color-brand-2);
 
-    div {
-      padding: 4px 0;
-      display: flex;
-      justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 
-      a,
-      span {
-        text-decoration: none;
-        color: var(--Color-white);
-        margin: 0;
-      }
-    }
+    border-radius: 4px;
 
-    div:hover {
-      cursor: pointer;
-    }
-  }
+    width: 104px;
+    padding: 8px;
 
-  @media screen and (min-width: 768px) {
-    section {
+    box-shadow: 0px 0px 4px #333333;
+
+    z-index: 101;
+
+    a {
+      color: var(--Color-gray-3);
       background-color: var(--Color-brand-1);
-      color: var(--Color-white);
-      width: 450%;
-      top: -14px;
-      right: 46px;
-      z-index: 1;
-      border-radius: 12px;
+      border-radius: 4px;
+      padding-top: 1px;
+      width: 100%;
+      height: 24px;
+      text-align: center;
+      font-size: 16px;
+    }
 
-      .myProfile {
-        border-bottom: 1px solid var(--Color-border-0);
-      }
+    button {
+      width: 100%;
+      height: 24px;
+      background-color: var(--Color-brand-1);
+      color: var(--Color-gray-3);
+      border-radius: 4px;
+      font-size: 16px;
+      border: none;
+    }
 
-      div {
-        a,
-        span {
-          color: var(--Color-white);
-        }
-      }
+    position: absolute;
+    top: 35px;
+    left: -64px;
+  }
+
+  @media (min-width: 1024px) {
+    .menu-body {
+      top: 35px;
+      left: -35px;
     }
   }
-`
+`;

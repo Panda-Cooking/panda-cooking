@@ -2,24 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { Container, Main } from "./styles";
 import { BiSend } from "react-icons/bi";
-import HeaderMenu from "../../HeaderMenu";
+
 import api from "../../../services/api";
 
-import {
-  iRecipe,
-  iRecipeComment,
-  iRecipeIngredients,
-  iRecipePreparation,
-} from "../../../contexts/RecipesContext";
+import { iRecipe, iRecipeComment } from "../../../contexts/RecipesContext";
 import { userContext } from "../../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { HorizontalScroll } from "../../HorizontalScroll";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper";
 import { Heading2, Heading3, Text2 } from "../../../styles/typography";
-
-// import { Container, Header } from './styles';
 
 const RecipesPage = () => {
   const { user } = useContext(userContext);
@@ -87,7 +80,6 @@ const RecipesPage = () => {
 
   return (
     <Container>
-      <HeaderMenu />
       <Main>
         <section className="firstRecipeSection">
           <div>
