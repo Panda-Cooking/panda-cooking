@@ -3,11 +3,13 @@ import { SiFoodpanda } from "react-icons/si";
 import { BsUpload } from "react-icons/bs";
 import { Text2 } from "../../../styles/typography";
 
-import { Container } from "./styles";
-import RecipesList from "./RecipesList";
-import { Link } from "react-router-dom";
-import { useRecipeContext } from "../../../contexts/RecipesContext";
-import panda from "../../../../src/assets/img/panda 4.png";
+
+import { Container } from './styles';
+import RecipesList from './RecipesList';
+import { Link } from 'react-router-dom';
+import { useRecipeContext } from '../../../contexts/RecipesContext';
+import panda from '../../../../src/assets/img/panda 4.png';
+
 
 const Dashboard = () => {
   const { getFilteredRecipes, setSearchParam } = useRecipeContext();
