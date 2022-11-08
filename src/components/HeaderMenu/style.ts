@@ -11,7 +11,7 @@ export const HeaderStyle = styled.header`
   }
   background-color: var(--Color-brand-2);
 
-  .header-linkHome > h2 {
+  .header-linkHome > h3 {
     display: none;
   }
 
@@ -37,7 +37,7 @@ export const HeaderStyle = styled.header`
       align-items: center;
       gap: 16px;
     }
-    .header-linkHome > h2 {
+    .header-linkHome > h3 {
       display: block;
     }
   }
