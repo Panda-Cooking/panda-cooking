@@ -40,6 +40,13 @@ export const Main = styled.main`
         align-items: center;
         gap: 8px;
       }
+      div > div > img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+      }
     }
 
     .recipeText {
@@ -136,81 +143,80 @@ export const Main = styled.main`
           gap: 16px;
         }
       }
+      ul > li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 16px;
+
+        background-color: var(--Color-gray-0);
+
+        padding: 16px;
+
+        border-radius: 4px;
+      }
+
+      ul > li > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      ul > li > div > img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      ul > li > p {
+        align-self: flex-end;
+      }
+    }
+    @media (min-width: 600px) {
+      .coment {
         ul > li {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          justify-content: space-between;
-
-          gap: 16px;
-
-          background-color: var(--Color-gray-0);
-
-          padding: 16px;
-
-          border-radius: 4px;
+          flex-direction: row;
         }
-
         ul > li > div {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 16px;
-        }
-        ul > li > div > img {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          object-fit: cover;
-          object-position: center;
-        }
-
-        ul > li > p {
-          align-self: flex-end;
-        }
-      }
-      @media (min-width: 600px) {
-        .coment {
-          ul > li {
-            flex-direction: row;
-          }
-          ul > li > div {
-            flex-direction: row;
-          }
+          flex-direction: row;
         }
       }
     }
+  }
 
-    .addComentContainer {
-      background-color: var(--Color-gray-0);
-      border-radius: 4px;
+  .addComentContainer {
+    background-color: var(--Color-gray-0);
+    border-radius: 4px;
 
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
 
-      textarea {
-        border: none;
-        outline: none;
-        resize: none;
-        background: none;
-        width: 95%;
-      }
-      button {
-        border: none;
-        background: none;
-      }
-
-      button > svg {
-        width: 24px;
-        height: 24px;
-      }
+    textarea {
+      border: none;
+      outline: none;
+      resize: none;
+      background: none;
+      width: 95%;
+    }
+    button {
+      border: none;
+      background: none;
     }
 
-    h2 {
-      font-weight: 700;
-      font-size: 1.5rem;
+    button > svg {
+      width: 24px;
+      height: 24px;
     }
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
   }
 `;
