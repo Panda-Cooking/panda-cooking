@@ -1,5 +1,5 @@
-import { Heading3, Text2 } from '../../../../styles/typography';
-import { useNavigate } from 'react-router-dom';
+import { Heading3, Text2 } from "../../../../styles/typography";
+import { useNavigate } from "react-router-dom";
 
 interface iRecipeCardProps {
   name: string;
@@ -17,7 +17,7 @@ const RecipeCard = ({ name, category, images, recipeId }: iRecipeCardProps) => {
 
   return (
     <li onClick={(e) => navigateToRecipe(recipeId.toString())}>
-      <img src={images && images[0]} alt='Imagem de receita' />
+      <img src={images && images[0]} alt="Imagem de receita" />
       <div>
         <Heading3>{name}</Heading3>
         <div>
