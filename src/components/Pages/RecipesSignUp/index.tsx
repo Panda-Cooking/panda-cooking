@@ -38,7 +38,6 @@ import { toast } from "react-toastify";
 
 import { useForm, useFieldArray } from "react-hook-form";
 import { useUserContext } from "../../../contexts/AuthContext";
-import HeaderMenu from "../../HeaderMenu";
 import { iRecipe } from "../../../contexts/RecipesContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -150,10 +149,9 @@ const RecipesSingUp = () => {
   return (
     <>
       {!user ? (
-        <Navigate to="/" replace={true} />
+        <Navigate to="/signIn" replace={true} />
       ) : (
         <Container>
-          <HeaderMenu />
           <Main>
             <Form onSubmit={handleSubmit(sumbitForm)}>
               <FormContainer>

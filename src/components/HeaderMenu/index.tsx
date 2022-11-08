@@ -1,29 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useUserContext } from '../../contexts/AuthContext'
-import { SiFoodpanda } from 'react-icons/si'
-import { Heading2 } from '../../styles/typography'
-import { HeaderStyle } from './style'
-import MenuHamb from './MenuHamb'
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+import { useUserContext } from "../../contexts/AuthContext";
+import { SiFoodpanda } from "react-icons/si";
+import { Heading3 } from "../../styles/typography";
+import { HeaderStyle } from "./style";
+import MenuHamb from "./MenuHamb";
 
 const HeaderMenu = () => {
-  const { user } = useUserContext()
+  const { user } = useUserContext();
 
   return (
-    <HeaderStyle>
-      <Link to="/dashboard" className='linkHome'>
-        <SiFoodpanda size={45} className="mainPandaLogo"></SiFoodpanda>
-        <Heading2>Panda Cooking</Heading2>
-      </Link>
-      {user ? (
-        <MenuHamb/>
-      ) : (
-        <Link to="/signIn" id="goToLogin">
-          Login
-        </Link>
-      )}
-    </HeaderStyle>
-  )
-}
+    <>
+      <HeaderStyle>
+        <div className="container">
+          <Link to="/dashboard" className="header-linkHome">
+            <SiFoodpanda size={32}></SiFoodpanda>
+            <Heading3>Panda Cooking</Heading3>
+          </Link>
+          {user ? (
+            <MenuHamb />
+          ) : (
+            <div className="header-buttons">
+              <Link to="/signIn">Login</Link>
+              <Link to="/signUp">Registro</Link>
+            </div>
+          )}
+        </div>
+      </HeaderStyle>
+      <Outlet />
+    </>
+  );
+};
 
-export default HeaderMenu
+export default HeaderMenu;
