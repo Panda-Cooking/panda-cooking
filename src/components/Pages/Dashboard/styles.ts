@@ -89,6 +89,7 @@ export const Container = styled.div`
         font-weight: 700;
         font-size: 12px;
         color: white;
+        /* cursor: pointer; */
       }
 
       .filterAll {
@@ -106,7 +107,7 @@ export const Container = styled.div`
         #fs1 {
           height: 152px;
           position: relative;
-
+          z-index: 0;
           #miniLogo {
             display: block;
             margin-top: 8px;

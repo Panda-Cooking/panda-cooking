@@ -4,7 +4,7 @@ export const HambStyle = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
+  z-index: 101;
   svg {
     cursor: pointer;
     color: var(--Color-gray-3);
@@ -24,8 +24,6 @@ export const HambStyle = styled.div`
     padding: 8px;
 
     box-shadow: 0px 0px 4px #333333;
-
-    z-index: 101;
 
     a {
       color: var(--Color-gray-3);
