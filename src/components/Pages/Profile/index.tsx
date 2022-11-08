@@ -26,7 +26,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ListItem from "./ListItem";
 import { ProfileContext } from "../../../contexts/ProfileContext";
 import { useUserContext } from "../../../contexts/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 interface iFormValues {
   name?: string;
@@ -94,11 +94,9 @@ const Profile = () => {
                 <RecipeList>
                   {recipeList?.length > 0 ? (
                     recipeList.map((element) => (
-                      <ListItem
-                        key={element.id}
-                        images={element.images}
-                        name={element.name}
-                      />
+                      <Link key={element.id} to={`/recipesPage/${element.id}`}>
+                        <ListItem images={element.images} name={element.name} />
+                      </Link>
                     ))
                   ) : (
                     <Heading1>

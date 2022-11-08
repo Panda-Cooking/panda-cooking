@@ -9,7 +9,13 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 26px;
+  padding: 32px 16px;
+
+  @media (min-width: 1024px) {
+    padding: 32px 0;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
 `;
 
 export const ProfileContainer = styled.div`
@@ -76,7 +82,11 @@ export const InputDefault = styled.input`
   background-color: white;
   font-size: 20px;
   font-weight: 400;
-  color: #a4a4a4;
+  color: var(--Color-gray-3);
+
+  &:focus {
+    outline: 2px solid var(--Color-gray-3);
+  }
 `;
 export const ButtonDefault = styled.button`
   width: 100%;
@@ -88,6 +98,11 @@ export const ButtonDefault = styled.button`
   border: none;
   border-radius: 16px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;
 
 export const RecipesContainer = styled.div`
