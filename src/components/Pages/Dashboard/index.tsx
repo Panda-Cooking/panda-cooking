@@ -7,7 +7,7 @@ import { Container } from './styles';
 import RecipesList from './RecipesList';
 import { Link } from 'react-router-dom';
 import { useRecipeContext } from '../../../contexts/RecipesContext';
-import panda from '../../../../src/assets/img/panda 4.png';
+import panda from '../../../assets/img/Panda4.png';
 import { Swiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper';
