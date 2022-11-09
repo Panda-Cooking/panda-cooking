@@ -9,7 +9,7 @@ export const MenuMobile = () => {
       exit={{ translateY: [0, -50], opacity: [1, 0], zIndex: [20, -20] }}
       transition={{ ease: "easeInOut", duration: 0.3 }}
     >
-      <Link to="/">Login</Link>
+      <Link to="/signIn">Login</Link>
       <Link to="/signUp">Registro</Link>
     </MenuMobileStyled>
   );
