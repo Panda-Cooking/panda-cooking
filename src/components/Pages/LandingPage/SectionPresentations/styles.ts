@@ -30,6 +30,8 @@ export const SectionPresentationsStyled = styled.section`
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    position: relative;
+    width: 100%;
   }
 
   .box-infos > p {
@@ -43,10 +45,37 @@ export const SectionPresentationsStyled = styled.section`
     padding: 8px;
     border-radius: 56px;
   }
+  .cookie-box {
+    width: 100%;
+    position: relative;
+  }
+  .cookie-icon {
+    display: inline-block;
+    width: 96px;
+    position: absolute;
+    z-index: 10;
+    top: -88px;
+    left: 0;
+    background: none;
+    border: none;
+  }
+
+  .cookie-message {
+    display: inline-flex;
+    background: #fff;
+    border-radius: 8px 8px 64px 8px;
+    padding: 8px;
+    color: var(--Color-gray-3);
+    text-align: start;
+  }
 
   @media (min-width: 768px) {
     .container > img {
       display: inline-block;
+    }
+    .cookie-icon {
+      top: -48px;
+      left: -40px;
     }
   }
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SectionOnHighStyled = styled.section`
+export const SectionLastAddedStyled = styled.section`
   background-color: var(--Color-brand-2);
 
   padding-top: 32px;
@@ -15,21 +15,29 @@ export const SectionOnHighStyled = styled.section`
     gap: 32px;
   }
 
-  .swiper-slide {
+  .swiper-slide > a {
     background-color: var(--Color-white);
 
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     gap: 16px;
 
     border-radius: 8px;
     padding-bottom: 16px;
+    height: 216px;
+
+    text-align: center;
   }
-  .swiper-slide > img {
+  .swiper-slide > a > img {
+    border-radius: 8px;
+    height: 128px;
     width: 100%;
     object-fit: cover;
+  }
+
+  .swiper-slide > a > h3 {
+    font-size: 20px;
   }
 
   @media (min-width: 1024px) {
