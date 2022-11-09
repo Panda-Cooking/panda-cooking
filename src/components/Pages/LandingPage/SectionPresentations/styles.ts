@@ -13,7 +13,7 @@ export const SectionPresentationsStyled = styled.section`
     min-height: 544px;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
 
     gap: 32px;
