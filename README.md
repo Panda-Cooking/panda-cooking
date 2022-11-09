@@ -110,7 +110,7 @@ Objeto da requisição POST:
     ]
 ```
 
-O retorno será o objeto inteiro:
+O retorno será o objeto inteiro da receita:
 
 ------------------------------------------
 
@@ -119,7 +119,6 @@ O retorno será o objeto inteiro:
 - Visualização de receitas : True,
 - Envio de receitas próprias: True,
 - Visualização das receitas mais famosas: True,
-- Gostei/Like nas receitas: True,
 - Edição de receita: True,
 - Comentários: true
 ## Bibliotecas utilizadas no projeto
