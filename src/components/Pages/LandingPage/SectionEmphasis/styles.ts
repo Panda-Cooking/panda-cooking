@@ -19,6 +19,8 @@ export const SectionEmphasisStyled = styled.section`
   .container > img {
     width: 100%;
     border-radius: 56px 0 56px 0;
+    object-fit: cover;
+    object-position: center;
   }
 
   .box-infos {

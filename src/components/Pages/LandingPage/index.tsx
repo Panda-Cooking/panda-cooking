@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Footer } from "./Footer";
 
 import { SectionEmphasis } from "./SectionEmphasis";
-import { SectionOnHigh } from "./SectionOnHigh";
+import { SectionLastAdded } from "./SectionLastAdded";
 import { SectionPresentations } from "./SectionPresentations";
 import { LandingPageStyled } from "./styles";
 
@@ -15,7 +15,7 @@ const LandingPage = () => {
     >
       <LandingPageStyled>
         <SectionPresentations />
-        <SectionOnHigh />
+        <SectionLastAdded />
         <SectionEmphasis />
         <Footer />
       </LandingPageStyled>

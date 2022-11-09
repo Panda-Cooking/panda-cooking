@@ -1,26 +1,44 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import productEmphasisImg from "../../../../assets/img/product-Emphasis.png";
+
+import { iRecipe } from "../../../../contexts/RecipesContext";
+import api from "../../../../services/api";
 import { Heading3, Text1 } from "../../../../styles/typography";
 import { SectionEmphasisStyled } from "./styles";
 
 export const SectionEmphasis = () => {
+  const [recommendation, setRecommendation] = useState<iRecipe[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await api.get<iRecipe[]>("recipes?id=19");
+        setRecommendation(data);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
   return (
-    <SectionEmphasisStyled>
-      <div className="container">
-        <Heading3 color="white">Receita mais acessada</Heading3>
-        <img src={productEmphasisImg} alt="" />
-        <div className="box-infos">
-          <Text1 color="white">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book t has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
-          </Text1>
-          <Link to="">Acessar receita</Link>
-        </div>
-      </div>
-    </SectionEmphasisStyled>
+    <>
+      {recommendation && (
+        <SectionEmphasisStyled>
+          <div className="container">
+            <Heading3 color="white">Recomendação dos desenvolvedores</Heading3>
+            <img
+              src={recommendation[0]?.images[0]?.value}
+              alt={recommendation[0]?.name}
+            />
+            <div className="box-infos">
+              <Text1 color="white">{recommendation[0]?.description}</Text1>
+              <Link to={`/recipesPage/${recommendation[0]?.id}`}>
+                Acessar receita
+              </Link>
+            </div>
+          </div>
+        </SectionEmphasisStyled>
+      )}
+    </>
   );
 };
