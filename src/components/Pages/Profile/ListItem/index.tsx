@@ -1,4 +1,3 @@
-import { iRecipe } from "../../../../contexts/RecipesContext";
 import { Text2 } from "../../../../styles/typography";
 import { NameContainer, RecipeImg, StyledFigure, StyledLi } from "./style";
 
