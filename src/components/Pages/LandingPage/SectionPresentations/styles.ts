@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import bgLandingPage from "/src/assets/img/bg-landingPage.jpg";
 
 export const SectionPresentationsStyled = styled.section`
   min-height: 544px;
   width: 100%;
 
-  background: url("/src/assets/img/bg-landingPage.jpg");
+  background: url(${bgLandingPage});
   background-size: 148%;
   background-position: center;
   background-repeat: no-repeat;
