@@ -32,9 +32,10 @@ const AuthContext = ({ children }: iUserProviderProps) => {
 
     const loginFunction = async (formLogin: iUserLogin) => {
         try {
-            const { data } = await api.post("/login", formLogin);
-            localStorage.setItem("@pandaToken", data.accessToken);
-            setUser(data.user);
+            const { data } = await api.post("/auth", formLogin);
+
+            localStorage.setItem("@pandaToken", data.token);
+            // setUser(data.user);
             navigate("/dashboard", { replace: true });
             toast.success("Bem vindo ^^");
         } catch (error) {
