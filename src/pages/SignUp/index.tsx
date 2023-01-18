@@ -24,7 +24,7 @@ export interface IUserRegister {
     email: string;
     password: string;
     confirmPassword: string;
-    img: string;
+    imageProfile: string;
 }
 
 const SignUp = () => {
@@ -47,7 +47,7 @@ const SignUp = () => {
         confirmPassword: yup
             .string()
             .oneOf([yup.ref("password")], "Deve ser idêntica a senha original"),
-        img: yup.string().required("Imagem obrigatória"),
+        imageProfile: yup.string().required("Imagem obrigatória"),
     });
 
     const {
@@ -100,9 +100,9 @@ const SignUp = () => {
                         <StyledInput
                             placeholder="Imagem de perfil"
                             type="text"
-                            {...register("img")}
+                            {...register("imageProfile")}
                         />
-                        <Error>{errors.img?.message}</Error>
+                        <Error>{errors.imageProfile?.message}</Error>
                         <Link to="/signIn" relative="path">
                             <StyledP>
                                 Já possuí uma conta? Faça login aqui!

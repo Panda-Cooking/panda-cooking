@@ -75,11 +75,10 @@ const RecipesPage = () => {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await api.get<iRecipe[]>(
-                    `/recipes?id=${recipeId}`
-                );
-
-                setRecipe(data[0]);
+                // const { data } = await api.get<iRecipe[]>(
+                //     `/recipes?id=${recipeId}`
+                // );
+                // setRecipe(data[0]);
             } catch (error) {
                 console.log(error);
             }

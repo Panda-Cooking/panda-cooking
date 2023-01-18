@@ -36,19 +36,19 @@ export const ProfileProviders = ({ children }: iUserProviderProps) => {
 
     const [recipeList, setRecipeList] = useState<iRecipe[]>([]);
 
-    useEffect(() => {
-        api.get(`/recipes?userId=${user?.id}`, {
-            headers: {
-                Authorization: `Bearer ${window.localStorage.getItem(
-                    "@pandaToken"
-                )}`,
-            },
-        }).then((res) => setRecipeList(res.data));
-        setPageUser({
-            name: user?.name,
-            img: user?.img,
-        });
-    }, [user]);
+    // useEffect(() => {
+    //     api.get(`/recipes?userId=${user?.id}`, {
+    //         headers: {
+    //             Authorization: `Bearer ${window.localStorage.getItem(
+    //                 "@pandaToken"
+    //             )}`,
+    //         },
+    //     }).then((res) => setRecipeList(res.data));
+    //     setPageUser({
+    //         name: user?.name,
+    //         img: user?.img,
+    //     });
+    // }, [user]);
 
     const onSubmit = (data: iFormValues) => {
         if (data.img === "") {

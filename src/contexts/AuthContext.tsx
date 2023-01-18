@@ -44,7 +44,7 @@ const AuthContext = ({ children }: iUserProviderProps) => {
 
     const signUpFunction = async (data: IUserRegister) => {
         try {
-            await api.post("/register", data);
+            await api.post("/users", data);
             toast.success("conta criada com sucesso!");
             navigate("/signIn", { replace: true });
         } catch (error) {

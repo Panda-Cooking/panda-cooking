@@ -24,11 +24,11 @@ const RecipesList = () => {
             async (entries) => {
                 if (entries.some((entry) => entry.isIntersecting)) {
                     const newRecipesPayload = recipesPayload + 1;
-                    const request = await api.get(
-                        `/recipes?_sort=id&_order=desc&_page=${newRecipesPayload}&_limit=12`
-                    );
-                    setRecipes([...recipes, ...request.data]);
-                    setRecipesPayload(newRecipesPayload);
+                    // const request = await api.get(
+                    //     `/recipes?_sort=id&_order=desc&_page=${newRecipesPayload}&_limit=12`
+                    // );
+                    // setRecipes([...recipes, ...request.data]);
+                    // setRecipesPayload(newRecipesPayload);
                 }
             }
         );

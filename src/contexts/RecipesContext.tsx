@@ -78,9 +78,9 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
         (async () => {
             if (searchParam === "") {
                 try {
-                    const request = await api.get(
-                        "/recipes?_sort=id&_order=desc"
-                    );
+                    // const request = await api.get(
+                    //     "/recipes?_sort=id&_order=desc"
+                    // );
                     setFilteredRecipes([]);
                 } catch (error) {
                     console.log(error);
@@ -100,10 +100,11 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
     useEffect(() => {
         (async () => {
             try {
-                const request = await api.get(
-                    "/recipes?_sort=id&_order=desc&_page=1&_limit=12"
-                );
-                setRecipes(request.data);
+                // const request = await api.get(
+                //     "/recipes?_sort=id&_order=desc&_page=1&_limit=12"
+                // );
+                // setRecipes(request.data);
+                setRecipes([]);
                 setCanObserve(true);
             } catch (error) {
                 toast.error("Erro ao listar receitas");
@@ -114,18 +115,21 @@ export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
     const getFilteredRecipes = async (category: string) => {
         try {
             if (category === "Todos") {
-                const request = await api.get("/recipes");
+                // const request = await api.get("/recipes");
                 setCategoryEmpty(false);
-                setRecipes(request.data);
+                // console.log(request.data);
+
+                // setRecipes(request.data);
+                setRecipes([]);
                 setFilteredRecipes([]);
             } else {
-                const request = await api.get(`/recipes?category=${category}`);
-                if (request.data[0] === undefined) {
-                    setCategoryEmpty(true);
-                } else {
-                    setFilteredRecipes(request.data);
-                    setCategoryEmpty(false);
-                }
+                // const request = await api.get(`/recipes?category=${category}`);
+                // if (request.data[0] === undefined) {
+                //     setCategoryEmpty(true);
+                // } else {
+                //     setFilteredRecipes(request.data);
+                //     setCategoryEmpty(false);
+                // }
             }
         } catch (error) {
             console.log(error);
