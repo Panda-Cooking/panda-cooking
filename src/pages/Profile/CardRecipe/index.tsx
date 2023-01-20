@@ -1,18 +1,19 @@
 import { Text2 } from "../../../styles/typography";
 import { NameContainer, RecipeImg, StyledFigure, StyledLi } from "./style";
 
-interface iPropsLisyItem {
+interface iPropsCardRecipe {
     images: {
-        value: string;
+        id: string;
+        url: string;
     }[];
     name: string;
 }
 
-const ListItem = (recipe: iPropsLisyItem) => {
+const CardRecipe = (recipe: iPropsCardRecipe) => {
     return (
         <StyledLi>
             <StyledFigure>
-                <RecipeImg src={recipe.images[0].value} alt={recipe.name} />
+                <RecipeImg src={recipe.images[0].url} alt={recipe.name} />
             </StyledFigure>
             <NameContainer>
                 <Text2>{recipe.name}</Text2>
@@ -21,4 +22,4 @@ const ListItem = (recipe: iPropsLisyItem) => {
     );
 };
 
-export default ListItem;
+export default CardRecipe;

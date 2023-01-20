@@ -5,9 +5,10 @@ interface iRecipeCardProps {
     name: string;
     category: string;
     images: {
-        value: string;
+        id: string;
+        url: string;
     }[];
-    recipeId: number;
+    recipeId: string;
 }
 
 const RecipeCard = ({ name, category, images, recipeId }: iRecipeCardProps) => {
@@ -18,8 +19,8 @@ const RecipeCard = ({ name, category, images, recipeId }: iRecipeCardProps) => {
     };
 
     return (
-        <li onClick={(e) => navigateToRecipe(recipeId.toString())}>
-            <img src={images && images[0].value} alt="Imagem de receita" />
+        <li onClick={(e) => navigateToRecipe(recipeId)}>
+            <img src={images && images[0].url} alt="Imagem de receita" />
             <div>
                 <Heading3>{name}</Heading3>
                 <div>

@@ -1,87 +1,63 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRecipeContext } from "../../../contexts/RecipesContext";
-import api from "../../../services/api";
-import { Heading3, Text2 } from "../../../styles/typography";
+import { Heading3 } from "../../../styles/typography";
 import Loader from "../../../components/Loading";
 import RecipeCard from "../RecipeCard";
 import { RecipesListContainer } from "./styles";
+import api from "../../../services/api";
 
 const RecipesList = () => {
-    const {
-        recipes,
-        filteredRecipes,
-        categoryEmpty,
-        setRecipes,
-        canObserve,
-        recipesPayload,
-        setRecipesPayload,
-    } = useRecipeContext();
-
+    const { recipes, loadingRecipes, setRecipes, getRecipesByCategory } =
+        useRecipeContext();
     const elementBeingObserved = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const intersectionObserver = new IntersectionObserver(
-            async (entries) => {
-                if (entries.some((entry) => entry.isIntersecting)) {
-                    const newRecipesPayload = recipesPayload + 1;
-                    // const request = await api.get(
-                    //     `/recipes?_sort=id&_order=desc&_page=${newRecipesPayload}&_limit=12`
-                    // );
-                    // setRecipes([...recipes, ...request.data]);
-                    // setRecipesPayload(newRecipesPayload);
-                }
-            }
-        );
+    // useEffect(() => {
+    //     const intersectionObserver = new IntersectionObserver(
+    //         async (entries) => {
+    //             if (entries.some((entry) => entry.isIntersecting)) {
+    //                 // const newRecipesPayload = recipesPayload + 1;
+    //                 const { data } = await api.get(`/recipes`);
 
-        if (canObserve) {
-            intersectionObserver.observe(
-                elementBeingObserved.current as HTMLDivElement
-            );
-        }
+    //                 setRecipes([...recipes, ...data]);
+    //                 // setRecipesPayload(newRecipesPayload);
+    //             }
+    //         }
+    //     );
 
-        return () => {
-            intersectionObserver.disconnect();
-        };
-    }, [canObserve, recipesPayload]);
+    //     if (canObserve) {
+    //         intersectionObserver.observe(
+    //             elementBeingObserved.current as HTMLDivElement
+    //         );
+    //     }
+
+    //     return () => {
+    //         intersectionObserver.disconnect();
+    //     };
+    // }, [canObserve, recipesPayload]);
 
     return (
         <RecipesListContainer>
             <div id="div1">
                 <Heading3>Lista de receitas</Heading3>
             </div>
-            {recipes.length || filteredRecipes.length ? (
-                categoryEmpty ? (
-                    <h2>Não há receitas desta categoria</h2>
-                ) : (
-                    <ul>
-                        {filteredRecipes.length
-                            ? filteredRecipes.map((recipe) => (
-                                  <RecipeCard
-                                      key={recipe.id}
-                                      recipeId={recipe.id}
-                                      name={recipe.name}
-                                      category={recipe.category}
-                                      images={recipe.images}
-                                  ></RecipeCard>
-                              ))
-                            : recipes.map((recipe) => (
-                                  <RecipeCard
-                                      key={recipe.id}
-                                      recipeId={recipe.id}
-                                      name={recipe.name}
-                                      category={recipe.category}
-                                      images={recipe.images}
-                                  ></RecipeCard>
-                              ))}
-                    </ul>
-                )
+            {recipes.length === 0 ? (
+                <h2>Não há receitas desta categoria</h2>
             ) : (
-                <Loader></Loader>
+                <ul>
+                    {recipes.map((recipe) => (
+                        <RecipeCard
+                            key={recipe.id}
+                            recipeId={recipe.id}
+                            name={recipe.name}
+                            category={recipe.category.name}
+                            images={recipe.imagesRecipes}
+                        ></RecipeCard>
+                    ))}
+                </ul>
             )}
+            {loadingRecipes && <Loader></Loader>}
 
-            {canObserve && (
-                <div ref={elementBeingObserved} id="infinityScroll"></div>
-            )}
+            <div ref={elementBeingObserved} id="infinityScroll"></div>
         </RecipesListContainer>
     );
 };

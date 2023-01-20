@@ -7,31 +7,31 @@ import { Heading3, Text1 } from "../../../styles/typography";
 import { SectionEmphasisStyled } from "./styles";
 
 export const SectionEmphasis = () => {
-    // const [recommendation, setRecommendation] = useState<iRecipe[] | null>(
-    //     null
-    // );
+    const [recommendation, setRecommendation] = useState<iRecipe[] | null>(
+        null
+    );
 
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             const { data } = await api.get<iRecipe[]>("recipes");
-    //             setRecommendation(data);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     })();
-    // }, []);
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await api.get<iRecipe[]>("recipes");
+                setRecommendation(data);
+            } catch (err) {
+                console.log(err);
+            }
+        })();
+    }, []);
 
     return (
         <>
-            {/* {recommendation && (
+            {recommendation && (
                 <SectionEmphasisStyled>
                     <div className="container">
                         <Heading3 color="white">
                             Recomendação dos desenvolvedores
                         </Heading3>
                         <img
-                            src={recommendation[0]?.images[0]?.value}
+                            src={recommendation[0]?.imagesRecipes[0]?.url}
                             alt={recommendation[0]?.name}
                         />
                         <div className="box-infos">
@@ -44,7 +44,7 @@ export const SectionEmphasis = () => {
                         </div>
                     </div>
                 </SectionEmphasisStyled>
-            )} */}
+            )}
         </>
     );
 };

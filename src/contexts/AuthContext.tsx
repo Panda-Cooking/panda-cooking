@@ -1,32 +1,34 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
 import { iUserLogin } from "../pages/SignIn";
-import { IUserRegister } from "../pages/SignUp";
+import { iUserRegister } from "../pages/SignUp";
+import api from "../services/api";
 
-export interface iUserProviderProps {
+export interface iAuthProviderProps {
     children: ReactNode;
 }
 
-export interface iUserInfo {
-    email: string;
+export interface iUser {
+    id: string;
     name: string;
-    img: string;
-    id: number;
+    email: string;
+    imageProfile: string;
+    isAdm: boolean;
 }
 
-interface iUserContext {
+interface iAuthContext {
     loginFunction(formLogin: iUserLogin): Promise<void>;
     logoutFunction(): void;
-    signUpFunction(data: IUserRegister): Promise<void>;
-    user: iUserInfo | null;
+    signUpFunction(data: iUserRegister): Promise<void>;
+    user: iUser | null;
+    setUser: React.Dispatch<React.SetStateAction<iUser | null>>;
 }
 
-export const userContext = createContext<iUserContext>({} as iUserContext);
+export const authContext = createContext({} as iAuthContext);
 
-const AuthContext = ({ children }: iUserProviderProps) => {
-    const [user, setUser] = useState<iUserInfo | null>(null);
+const AuthContextProvider = ({ children }: iAuthProviderProps) => {
+    const [user, setUser] = useState<iUser | null>(null);
 
     const navigate = useNavigate();
 
@@ -34,19 +36,30 @@ const AuthContext = ({ children }: iUserProviderProps) => {
         try {
             const { data } = await api.post("/auth", formLogin);
 
+            const { data: userProfile } = await api.get("/users/profile", {
+                headers: {
+                    Authorization: `Bearer ${data.token}`,
+                },
+            });
+
             localStorage.setItem("@pandaToken", data.token);
-            // setUser(data.user);
+
+            setUser(userProfile);
+
             navigate("/dashboard", { replace: true });
+
             toast.success("Bem vindo ^^");
         } catch (error) {
             toast.error("email ou senha inválido");
         }
     };
 
-    const signUpFunction = async (data: IUserRegister) => {
+    const signUpFunction = async (data: iUserRegister) => {
         try {
             await api.post("/users", data);
+
             toast.success("conta criada com sucesso!");
+
             navigate("/signIn", { replace: true });
         } catch (error) {
             toast.error("conta já existente!");
@@ -60,23 +73,24 @@ const AuthContext = ({ children }: iUserProviderProps) => {
     };
 
     return (
-        <userContext.Provider
+        <authContext.Provider
             value={{
                 loginFunction,
                 logoutFunction,
                 user,
                 signUpFunction,
+                setUser,
             }}
         >
             {children}
-        </userContext.Provider>
+        </authContext.Provider>
     );
 };
 
-export function useUserContext(): iUserContext {
-    const context = useContext(userContext);
+export const useAuthContext = (): iAuthContext => {
+    const context = useContext(authContext);
 
     return context;
-}
+};
 
-export default AuthContext;
+export default AuthContextProvider;

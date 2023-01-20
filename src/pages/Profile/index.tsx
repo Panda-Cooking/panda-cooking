@@ -19,35 +19,56 @@ import {
     Heading3,
     Text2Span,
 } from "../../styles/typography";
-import { useContext } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import ListItem from "./ListItem";
-import { ProfileContext } from "../../contexts/ProfileContext";
-import { useUserContext } from "../../contexts/AuthContext";
+import CardRecipe from "./CardRecipe";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import avatar from "../../assets/img/avatar.png";
+import api from "../../services/api";
 
-interface iFormValues {
+interface iUserUpdate {
     name?: string;
-    img?: string;
+    imageProfile?: string;
     password?: string;
 }
 
 const Profile = () => {
-    const { onSubmit, pageUser, recipeList } = useContext(ProfileContext);
-    const { user } = useUserContext();
+    const { user, setUser } = useAuthContext();
 
     const formSchema = yup.object().shape({
         name: yup.string(),
-        img: yup.string(),
+        imageProfile: yup.string(),
         password: yup.string(),
     });
 
-    const { register, handleSubmit } = useForm<iFormValues>({
+    const { register, handleSubmit } = useForm<iUserUpdate>({
         resolver: yupResolver(formSchema),
     });
+
+    const imageOnError = (
+        e: React.BaseSyntheticEvent<Event, HTMLImageElement, HTMLImageElement>
+    ) => {
+        e.target.src = avatar;
+    };
+
+    const submit = async (data: iUserUpdate) => {
+        const token = localStorage.getItem("@pandaToken");
+
+        try {
+            const { data: response } = await api.patch("/users/profile", data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            setUser(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -64,18 +85,15 @@ const Profile = () => {
                                     <UserInfo>
                                         <UserFigure>
                                             <UserImg
-                                                src={pageUser?.img}
+                                                src={user?.imageProfile}
                                                 alt=""
+                                                onError={imageOnError}
                                             />
                                         </UserFigure>
-                                        <Heading3>
-                                            {pageUser?.name
-                                                ? pageUser?.name
-                                                : "Nome"}
-                                        </Heading3>
+                                        <Heading3>{user?.name}</Heading3>
                                     </UserInfo>
 
-                                    <Form onSubmit={handleSubmit(onSubmit)}>
+                                    <Form onSubmit={handleSubmit(submit)}>
                                         <Heading3>Atualizar perfil</Heading3>
                                         <InputDefault
                                             type="text"
@@ -85,7 +103,7 @@ const Profile = () => {
                                         <InputDefault
                                             type="text"
                                             placeholder="url da foto"
-                                            {...register("img")}
+                                            {...register("imageProfile")}
                                         />
                                         <InputDefault
                                             type="text"
@@ -105,14 +123,17 @@ const Profile = () => {
                                         <Heading2>Minhas Receitas</Heading2>
                                     </RecipesHeader>
                                     <RecipeList>
-                                        {recipeList?.length > 0 ? (
-                                            recipeList.map((element) => (
+                                        {/* {
+                                        []?.length > 0 ? (
+                                            [].map((element) => (
                                                 <Link
                                                     key={element.id}
                                                     to={`/recipesPage/${element.id}`}
                                                 >
-                                                    <ListItem
-                                                        images={element.images}
+                                                    <CardRecipe
+                                                        images={
+                                                            element.imagesRecipes
+                                                        }
                                                         name={element.name}
                                                     />
                                                 </Link>
@@ -122,7 +143,7 @@ const Profile = () => {
                                                 Adicione uma Receita para que
                                                 ela apareça aqui
                                             </Heading1>
-                                        )}
+                                        )} */}
                                     </RecipeList>
                                 </RecipesContainer>
                             </ProfileContainer>

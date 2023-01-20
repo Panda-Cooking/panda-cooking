@@ -16,10 +16,10 @@ import {
 import pandaImg from "../../assets/img/panda-Register.png";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { motion } from "framer-motion";
 
-export interface IUserRegister {
+export interface iUserRegister {
     name: string;
     email: string;
     password: string;
@@ -29,7 +29,7 @@ export interface IUserRegister {
 
 const SignUp = () => {
     const StyledIcon = { fontSize: "5em", paddingTop: "2rem" };
-    const { signUpFunction } = useUserContext();
+    const { signUpFunction } = useAuthContext();
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Nome obrigatório"),
@@ -54,7 +54,7 @@ const SignUp = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<IUserRegister>({
+    } = useForm<iUserRegister>({
         resolver: yupResolver(formSchema),
     });
 
