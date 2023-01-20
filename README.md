@@ -10,18 +10,6 @@
 
 -Nossa ideia para melhorar o acesso e o aproveitamento das pessoas ao entrarem em nosso site foi resolver esses problemas citados a cima e algumas features/funcionalidades a mais. Em nossa aplicação é possível ver antes mesmo de fazer login as receitas mais recentes postadas, e a sugerida por nós desenvolvedores como uma das melhores até o momento em destaque, dentro da aplicação ao criar uma conta o usuário pode comentar, pesquisar, filtrar, enviar e visualizar as receitas com facilidade e praticidade, com as informações bem posicionadas na tela de uma agradável ao olhar, e até mesmo ter fácil acesso as receitas cadastradas por ele mesmo ao acessar a pagina de perfil, onde pode também editar seu próprio perfil.
 
-## Quais as features da aplicação?
-
-1.  **Endpoints**
-
-| Rota         | Tipo              |
-| ------------ | ----------------- |
-| /signIn      | POST              |
-| /signUp      | POST              |
-| /recipes     | PACTH, GET & POST |
-| /recipes/:id | GET               |
-| /users/:id   | PACTH             |
-
 ### API
 
 URL base --> https://panda-cooking-api.onrender.com
