@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useUserContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { SiFoodpanda } from "react-icons/si";
 import { Heading3 } from "../../styles/typography";
 import { HeaderStyle } from "./style";
 import MenuHamb from "./MenuHamb";
 
 const HeaderMenu = () => {
-    const { user } = useUserContext();
+    const { user } = useAuthContext();
 
     return (
         <>

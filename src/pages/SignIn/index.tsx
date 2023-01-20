@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginStyle } from "./styles";
 import * as Yup from "yup";
 import "react-toastify/dist/ReactToastify.css";
-import { useUserContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { Heading1, Heading2 } from "../../styles/typography";
 import { motion } from "framer-motion";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -17,14 +17,18 @@ export interface iUserLogin {
 }
 
 const SignIn = () => {
-    const { loginFunction } = useUserContext();
+    const { loginFunction } = useAuthContext();
 
     const formSchema = Yup.object().shape({
         email: Yup.string().required("email obrigatório"),
-        password: Yup.string().min(6).required("senha obrigatória"),
+        password: Yup.string().required("senha obrigatória"),
     });
 
-    const { register, handleSubmit } = useForm<iUserLogin>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<iUserLogin>({
         resolver: yupResolver(formSchema),
     });
 

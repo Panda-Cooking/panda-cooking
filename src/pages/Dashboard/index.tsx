@@ -1,34 +1,18 @@
-import React, { useEffect } from "react";
 import { SiFoodpanda } from "react-icons/si";
 import { BsUpload } from "react-icons/bs";
 import { Text2 } from "../../styles/typography";
-
 import { Container } from "./styles";
-import RecipesList from "./RecipesList";
 import { Link } from "react-router-dom";
 import { useRecipeContext } from "../../contexts/RecipesContext";
-import panda from "../../assets/img/Panda4.png";
 import { Swiper } from "swiper/react";
 import { SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper";
 import { motion } from "framer-motion";
+import RecipesList from "./RecipesList";
+import panda from "../../assets/img/Panda4.png";
 
 const Dashboard = () => {
-    const categories = [
-        "Todos",
-        "Bolos",
-        "Carnes",
-        "Aves",
-        "Peixes",
-        "Sobremesas",
-        "Massas",
-        "Saladas",
-        "Lanches",
-        "Sopas",
-        "Bebidas",
-    ];
-
-    const { getFilteredRecipes, setSearchParam } = useRecipeContext();
+    const { categories } = useRecipeContext();
 
     return (
         <motion.div
@@ -56,9 +40,6 @@ const Dashboard = () => {
                                 </div>
                                 <div className="searchBar" id="fs3">
                                     <input
-                                        onChange={(e) =>
-                                            setSearchParam(e.target.value)
-                                        }
                                         type="text"
                                         placeholder="Pesquisar..."
                                     />
@@ -87,16 +68,9 @@ const Dashboard = () => {
                                 {categories.map((category, index) => (
                                     <SwiperSlide
                                         className={index < 1 ? "filterAll" : ""}
-                                        key={category}
-                                        onClick={(e) =>
-                                            getFilteredRecipes(
-                                                (
-                                                    e.target as HTMLTextAreaElement
-                                                ).innerText
-                                            )
-                                        }
+                                        key={category.id}
                                     >
-                                        {category}
+                                        {category.name}
                                     </SwiperSlide>
                                 ))}
                             </Swiper>

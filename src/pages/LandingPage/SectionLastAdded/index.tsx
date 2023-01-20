@@ -19,7 +19,7 @@ export const SectionLastAdded = () => {
                         <SwiperSlide key={recipe.id}>
                             <Link to={`/recipesPage/${recipe.id}`}>
                                 <img
-                                    src={recipe.images[0].value}
+                                    src={recipe.imagesRecipes[0].url}
                                     alt={recipe.name}
                                 />
                                 <Heading3>{recipe.name}</Heading3>

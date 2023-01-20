@@ -14,7 +14,7 @@ export const SectionEmphasis = () => {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await api.get<iRecipe[]>("recipes?id=19");
+                const { data } = await api.get<iRecipe[]>("recipes");
                 setRecommendation(data);
             } catch (err) {
                 console.log(err);
@@ -31,7 +31,7 @@ export const SectionEmphasis = () => {
                             Recomendação dos desenvolvedores
                         </Heading3>
                         <img
-                            src={recommendation[0]?.images[0]?.value}
+                            src={recommendation[0]?.imagesRecipes[0]?.url}
                             alt={recommendation[0]?.name}
                         />
                         <div className="box-infos">

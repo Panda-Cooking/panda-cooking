@@ -16,20 +16,20 @@ import {
 import pandaImg from "../../assets/img/panda-Register.png";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { motion } from "framer-motion";
 
-export interface IUserRegister {
+export interface iUserRegister {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
-    img: string;
+    imageProfile: string;
 }
 
 const SignUp = () => {
     const StyledIcon = { fontSize: "5em", paddingTop: "2rem" };
-    const { signUpFunction } = useUserContext();
+    const { signUpFunction } = useAuthContext();
 
     const formSchema = yup.object().shape({
         name: yup.string().required("Nome obrigatório"),
@@ -47,14 +47,14 @@ const SignUp = () => {
         confirmPassword: yup
             .string()
             .oneOf([yup.ref("password")], "Deve ser idêntica a senha original"),
-        img: yup.string().required("Imagem obrigatória"),
+        imageProfile: yup.string().required("Imagem obrigatória"),
     });
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<IUserRegister>({
+    } = useForm<iUserRegister>({
         resolver: yupResolver(formSchema),
     });
 
@@ -100,9 +100,9 @@ const SignUp = () => {
                         <StyledInput
                             placeholder="Imagem de perfil"
                             type="text"
-                            {...register("img")}
+                            {...register("imageProfile")}
                         />
-                        <Error>{errors.img?.message}</Error>
+                        <Error>{errors.imageProfile?.message}</Error>
                         <Link to="/signIn" relative="path">
                             <StyledP>
                                 Já possuí uma conta? Faça login aqui!

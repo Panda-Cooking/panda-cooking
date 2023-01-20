@@ -1,12 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { Container, Main } from "./styles";
 import { BiSend } from "react-icons/bi";
 
-import api from "../../services/api";
-
-import { iRecipe, iRecipeComment } from "../../contexts/RecipesContext";
-import { userContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -14,14 +11,30 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper";
 import { Heading2, Heading3, Text2 } from "../../styles/typography";
 import { motion } from "framer-motion";
+import { iRecipe } from "../../contexts/RecipesContext";
+import api from "../../services/api";
 import Loading from "../../components/Loading";
+import avatar from "../../assets/img/avatar.png";
 import "swiper/css";
 import "swiper/css/pagination";
 
+interface iRecipeById extends iRecipe {
+    comments: {
+        id: string;
+        description: string;
+        createdAt: string;
+        updatedAt: string;
+    }[];
+}
+
+interface iComment {
+    description: string;
+}
+
 const RecipesPage = () => {
-    const { user } = useContext(userContext);
+    const { user } = useAuthContext();
     const { recipeId } = useParams();
-    const [recipe, setRecipe] = useState<iRecipe | null>(null);
+    const [recipe, setRecipe] = useState<iRecipeById>();
 
     const months = [
         "Janeiro",
@@ -42,49 +55,62 @@ const RecipesPage = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<iRecipeComment>();
+    } = useForm<iComment>();
 
-    const submit = async (data: iRecipeComment) => {
-        if (user) {
-            const date = new Date();
-            const newComent = {
-                comments: [
-                    ...recipe!.comments,
-                    {
-                        ...data,
-                        user: user,
-                        date: `${date.getMonth() + 1} ${date.getFullYear()}`,
+    const submit = async (data: iComment) => {
+        const token = localStorage.getItem("@pandaToken");
+
+        try {
+            const { data: response } = await api.post(
+                "/comments",
+                { ...data, userId: user?.id, recipeId },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
                     },
-                ],
-            };
+                }
+            );
 
-            await api.patch(`/recipes/${recipeId}`, newComent, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        "@pandaToken"
-                    )}`,
-                },
+            setRecipe((prevState) => {
+                return {
+                    ...prevState!,
+                    comments: [
+                        ...prevState?.comments!,
+                        {
+                            id: response.id,
+                            description: data.description,
+                            createdAt: response.createdAt,
+                            updatedAt: response.updatedAt,
+                        },
+                    ],
+                };
             });
 
-            const newRecipe = { ...recipe!, comments: newComent.comments };
-
-            setRecipe(newRecipe);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
         }
     };
 
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await api.get<iRecipe[]>(
-                    `/recipes?id=${recipeId}`
+                const { data } = await api.get<iRecipeById>(
+                    `/recipes/${recipeId}`
                 );
 
-                setRecipe(data[0]);
+                setRecipe(data);
             } catch (error) {
                 console.log(error);
             }
         })();
     }, []);
+
+    const imageOnError = (
+        e: React.BaseSyntheticEvent<Event, HTMLImageElement, HTMLImageElement>
+    ) => {
+        e.target.src = avatar;
+    };
 
     return (
         <motion.div
@@ -107,14 +133,16 @@ const RecipesPage = () => {
                                     spaceBetween={30}
                                     modules={[Mousewheel, Pagination]}
                                 >
-                                    {recipe?.images?.map((image, index) => (
-                                        <SwiperSlide key={index}>
-                                            <img
-                                                src={image.value}
-                                                alt={recipe?.name}
-                                            />
-                                        </SwiperSlide>
-                                    ))}
+                                    {recipe?.imagesRecipes?.map(
+                                        (image, index) => (
+                                            <SwiperSlide key={index}>
+                                                <img
+                                                    src={image.url}
+                                                    alt={recipe?.name}
+                                                />
+                                            </SwiperSlide>
+                                        )
+                                    )}
                                 </Swiper>
                             </div>
                         ) : (
@@ -126,8 +154,9 @@ const RecipesPage = () => {
                                 <div>
                                     <Heading3>Autor:</Heading3>
                                     <img
-                                        src={recipe?.author.img}
+                                        src={recipe?.user.imageProfile}
                                         alt="user__image"
+                                        onError={imageOnError}
                                     />
                                 </div>
                             </div>
@@ -140,12 +169,10 @@ const RecipesPage = () => {
                         <div>
                             <Heading2>Ingredientes</Heading2>
                             <ul>
-                                {recipe?.ingredients.map(
-                                    (ingredient, index) => (
-                                        <li key={index}>{`${
-                                            ingredient.qtd +
-                                            " " +
-                                            ingredient.name
+                                {recipe?.ingredientsRecipes.map(
+                                    ({ amount, ingredients, id }) => (
+                                        <li key={id}>{`${
+                                            amount + " " + ingredients.name
                                         }`}</li>
                                     )
                                 )}
@@ -169,36 +196,24 @@ const RecipesPage = () => {
                         <div className="comentsContainer">
                             <div className="coment">
                                 <ul>
-                                    {recipe?.comments?.map((comment, index) => (
-                                        <li key={index}>
-                                            <div>
-                                                {comment.user.img ? (
-                                                    <img
-                                                        src={comment.user.img}
-                                                        alt="user__image"
-                                                    />
-                                                ) : (
-                                                    <BsPerson size={25} />
-                                                )}
-                                                <Text2>
-                                                    {comment.description}
-                                                </Text2>
-                                            </div>
-                                            <Text2>
-                                                {`${
-                                                    months[
-                                                        Number(
-                                                            comment.date.split(
-                                                                " "
-                                                            )[0]
-                                                        ) - 1
-                                                    ]
-                                                } ${
-                                                    comment.date.split(" ")[1]
-                                                }`}
-                                            </Text2>
-                                        </li>
-                                    ))}
+                                    {recipe?.comments?.map(
+                                        ({ id, description, updatedAt }) => (
+                                            <li key={id}>
+                                                <div>
+                                                    {false ? (
+                                                        <img
+                                                            src={""}
+                                                            alt="user__image"
+                                                        />
+                                                    ) : (
+                                                        <BsPerson size={25} />
+                                                    )}
+                                                    <Text2>{description}</Text2>
+                                                </div>
+                                                <Text2>{updatedAt}</Text2>
+                                            </li>
+                                        )
+                                    )}
                                 </ul>
                             </div>
                         </div>
@@ -221,5 +236,4 @@ const RecipesPage = () => {
         </motion.div>
     );
 };
-
 export default RecipesPage;

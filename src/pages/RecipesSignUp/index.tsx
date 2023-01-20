@@ -37,7 +37,7 @@ import {
 import { toast } from "react-toastify";
 
 import { useForm, useFieldArray } from "react-hook-form";
-import { useUserContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { iRecipe } from "../../contexts/RecipesContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -46,28 +46,46 @@ import api from "../../services/api";
 import { Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const RecipesSingUp = () => {
-    const { user } = useUserContext();
+interface iRecipeRequest {
+    name: string;
+    description: string;
+    category: string;
+    time: string;
+    portions: number;
+    imagesRecipes: {
+        url: string;
+    }[];
+    ingredients: {
+        amount: string;
+        name: string;
+    }[];
+    preparations: {
+        description: string;
+    }[];
+}
 
-    const formSchema = yup.object().shape({
+const RecipesSingUp = () => {
+    const { user } = useAuthContext();
+
+    const formSchema: yup.SchemaOf<iRecipeRequest> = yup.object().shape({
         name: yup.string().required(),
         description: yup.string().required(),
-        images: yup
+        imagesRecipes: yup
             .array()
             .of(
                 yup.object({
-                    value: yup.string().required(),
+                    url: yup.string().required(),
                 })
             )
             .max(4)
             .required(),
         time: yup.string().required(),
-        portions: yup.string().required(),
+        portions: yup.number().required(),
         category: yup.string().required(),
         ingredients: yup.array().of(
             yup.object({
                 name: yup.string().required(),
-                qtd: yup.string().required(),
+                amount: yup.string().required(),
             })
         ),
         preparations: yup.array().of(
@@ -80,12 +98,13 @@ const RecipesSingUp = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
         control,
-    } = useForm<iRecipe>({
+    } = useForm<iRecipeRequest>({
         defaultValues: {
-            images: [{ value: "" }],
-            ingredients: [{ qtd: "", name: "" }],
+            imagesRecipes: [{ url: "" }],
+            ingredients: [{ amount: "", name: "" }],
             preparations: [{ description: "" }],
         },
         mode: "onBlur",
@@ -98,11 +117,11 @@ const RecipesSingUp = () => {
         remove: removeInputImage,
     } = useFieldArray({
         control,
-        name: "images",
+        name: "imagesRecipes",
     });
     const addInputImage = () => {
         if (inputsImages.length < 4) {
-            appendInputImage({ value: "" });
+            appendInputImage({ url: "" });
             return null;
         }
         toast.warn("Limite excedido!");
@@ -125,16 +144,9 @@ const RecipesSingUp = () => {
         name: "preparations",
     });
 
-    const sumbitForm = (data: iRecipe) => {
-        const reqBody = {
-            ...data,
-            comments: [],
-            userId: user?.id,
-            author: user,
-        };
-        console.log(reqBody);
+    const sumbitForm = (data: iRecipeRequest) => {
         try {
-            api.post("recipes", reqBody, {
+            api.post("recipes", data, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem(
@@ -142,9 +154,12 @@ const RecipesSingUp = () => {
                     )}`,
                 },
             });
+
             toast.success("Receita criada com sucesso!");
+
+            reset();
         } catch (error) {
-            toast.error("Ops! Algo deu errado! :(");
+            toast.error("Ops! Algo deu errado! :/");
             toast.error("Tente novamente!");
         }
     };
@@ -187,7 +202,7 @@ const RecipesSingUp = () => {
                                                     type="text"
                                                     placeholder="Url da imagem"
                                                     {...register(
-                                                        `images.${index}.value` as const
+                                                        `imagesRecipes.${index}.url` as const
                                                     )}
                                                 />
                                                 {index > 0 && (
@@ -300,7 +315,7 @@ const RecipesSingUp = () => {
                                                     type="text"
                                                     placeholder="1 1/2"
                                                     {...register(
-                                                        `ingredients.${index}.qtd` as const
+                                                        `ingredients.${index}.amount` as const
                                                     )}
                                                 />
                                                 <InputDefault
@@ -328,7 +343,7 @@ const RecipesSingUp = () => {
                                             type="button"
                                             onClick={() =>
                                                 appendInputIngredient({
-                                                    qtd: "",
+                                                    amount: "",
                                                     name: "",
                                                 })
                                             }

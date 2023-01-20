@@ -4,11 +4,11 @@ import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { HambStyle } from "./style";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUserContext } from "../../../contexts/AuthContext";
+import { useAuthContext } from "../../../contexts/AuthContext";
 
 const MenuHamb = () => {
     const [menu, setMenu] = useState<boolean>(false);
-    const { logoutFunction } = useUserContext();
+    const { logoutFunction } = useAuthContext();
 
     return (
         <HambStyle>
