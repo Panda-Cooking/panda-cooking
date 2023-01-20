@@ -1,158 +1,120 @@
 import {
-  createContext,
-  useContext,
-  ReactNode,
-  useState,
-  useEffect,
-} from 'react';
-import { toast } from 'react-toastify';
-import api from '../services/api';
-import { iUserInfo } from './AuthContext';
+    createContext,
+    useContext,
+    ReactNode,
+    useState,
+    useEffect,
+} from "react";
+import { toast } from "react-toastify";
+import api from "../services/api";
 
 interface iRecipeProviderProps {
-  children: ReactNode;
-}
-
-export interface iRecipeIngredients {
-  name: string;
-  qtd: string;
-}
-
-export interface iRecipePreparation {
-  description: string;
-}
-
-export interface iRecipeComment {
-  description: string;
-  user: iUserInfo;
-  date: string;
+    children: ReactNode;
 }
 
 export interface iRecipe {
-  name: string;
-  description: string;
-  category: string;
-  time: string;
-  portions: string;
-  images: {
-    value: string;
-  }[];
-  ingredients: {
-    qtd: string;
+    id: string;
     name: string;
-  }[];
-  preparations: {
     description: string;
-  }[];
-  author: iUserInfo;
-  comments: iRecipeComment[];
-  userId: number;
-  id: number;
+    user: {
+        id: string;
+        name: string;
+        email: string;
+        imageProfile: string;
+    };
+    category: {
+        id: string;
+        name: string;
+    };
+    time: string;
+    portions: number;
+    imagesRecipes: {
+        id: string;
+        url: string;
+    }[];
+    ingredientsRecipes: {
+        amount: string;
+        id: string;
+        ingredients: {
+            id: string;
+            name: string;
+        };
+    }[];
+    preparations: {
+        id: string;
+        description: string;
+    }[];
+}
+
+interface iCategories {
+    id: string;
+    name: string;
 }
 
 interface iRecipeContext {
-  recipes: iRecipe[];
-  setRecipes: (value: iRecipe[]) => void;
-  categoryEmpty: boolean;
-  getFilteredRecipes(category: string): void;
-  setSearchParam: (value: string) => void;
-  canObserve: boolean;
-  recipesPayload: number;
-  setRecipesPayload: (value: number) => void;
-  filteredRecipes: iRecipe[];
+    recipes: iRecipe[];
+    setRecipes: (value: iRecipe[]) => void;
+    getRecipesByCategory(category: string): void;
+    loadingRecipes: boolean;
+    categories: iCategories[];
 }
 
-export const RecipeContext = createContext<iRecipeContext>(
-  {} as iRecipeContext
-);
+export const recipeContext = createContext({} as iRecipeContext);
 
 export const RecipeProvider = ({ children }: iRecipeProviderProps) => {
-  const [recipes, setRecipes] = useState<iRecipe[]>([]);
-  const [filteredRecipes, setFilteredRecipes] = useState<iRecipe[]>([]);
-  const [categoryEmpty, setCategoryEmpty] = useState<boolean>(false);
-  const [searchParam, setSearchParam] = useState<string>(' ');
-  const [canObserve, setCanObserve] = useState(false);
-  const [recipesPayload, setRecipesPayload] = useState(1);
+    const [recipes, setRecipes] = useState<iRecipe[]>([]);
+    const [categories, setCategories] = useState<iCategories[]>([]);
+    const [loadingRecipes, setLoadingRecipes] = useState<boolean>(false);
 
-  useEffect(() => {
-    (async () => {
-      if (searchParam === '') {
-        try {
-          const request = await api.get('/recipes?_sort=id&_order=desc');
-          setFilteredRecipes([]);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        setFilteredRecipes(
-          recipes.filter((recipe) =>
-            recipe.name
-              .toLocaleLowerCase()
-              .includes(searchParam.toLocaleLowerCase())
-          )
-        );
-      }
-    })();
-  }, [searchParam]);
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoadingRecipes(true);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const request = await api.get(
-          '/recipes?_sort=id&_order=desc&_page=1&_limit=12'
-        );
-        setRecipes(request.data);
-        setCanObserve(true);
-      } catch (error) {
-        toast.error('Erro ao listar receitas');
-      }
-    })();
-  }, []);
+                const { data: categories } = await api.get("/categories");
 
-  const getFilteredRecipes = async (category: string) => {
-    try {
-      if (category === 'Todos') {
-        const request = await api.get('/recipes');
-        setCategoryEmpty(false);
-        setRecipes(request.data);
-        setFilteredRecipes([]);
-      } else {
-        const request = await api.get(`/recipes?category=${category}`);
-        if (request.data[0] === undefined) {
-          setCategoryEmpty(true);
-        } else {
-          setFilteredRecipes(request.data);
-          setCategoryEmpty(false);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+                setCategories([
+                    {
+                        id: "4009406e-c309-4b2b-b356-ccadc6d3a5dd",
+                        name: "todos",
+                    },
+                    ...categories,
+                ]);
 
-  return (
-    <RecipeContext.Provider
-      value={{
-        recipes,
-        setRecipes,
-        getFilteredRecipes,
-        categoryEmpty,
-        setSearchParam,
-        canObserve,
-        recipesPayload,
-        setRecipesPayload,
-        filteredRecipes,
-      }}
-    >
-      {children}
-    </RecipeContext.Provider>
-  );
+                const { data } = await api.get("/recipes");
+
+                setRecipes(data);
+
+                // setCanObserve(true);
+            } catch (error) {
+                toast.error("Erro ao listar receitas");
+            } finally {
+                setLoadingRecipes(false);
+            }
+        })();
+    }, []);
+
+    const getRecipesByCategory = async (category: string) => {};
+
+    return (
+        <recipeContext.Provider
+            value={{
+                recipes,
+                setRecipes,
+                getRecipesByCategory,
+                loadingRecipes,
+                categories,
+            }}
+        >
+            {children}
+        </recipeContext.Provider>
+    );
 };
 
-export function useRecipeContext(): iRecipeContext {
-  const context = useContext(RecipeContext);
+export const useRecipeContext = (): iRecipeContext => {
+    const context = useContext(recipeContext);
 
-  return context;
-}
+    return context;
+};
 
 export default RecipeProvider;

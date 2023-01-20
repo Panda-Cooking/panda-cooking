@@ -1,17 +1,17 @@
-import AuthContext, { iUserProviderProps } from './AuthContext'
-import { ProfileProviders } from './ProfileContext'
-import RecipeProvider from './RecipesContext'
+import { ReactNode } from "react";
+import AuthContextProvider from "./AuthContext";
+import RecipeProvider from "./RecipesContext";
 
-function Providers({ children }: iUserProviderProps) {
-  return (
-    <AuthContext>
-      <ProfileProviders>
-          <RecipeProvider>
-            {children}
-          </RecipeProvider>
-      </ProfileProviders>
-    </AuthContext>
-  )
+interface iProvidersProps {
+    children: ReactNode;
 }
 
-export default Providers
+const Providers = ({ children }: iProvidersProps) => {
+    return (
+        <AuthContextProvider>
+            <RecipeProvider>{children}</RecipeProvider>
+        </AuthContextProvider>
+    );
+};
+
+export default Providers;
