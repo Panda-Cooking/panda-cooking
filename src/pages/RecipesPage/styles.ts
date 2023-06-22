@@ -15,7 +15,7 @@ export const Main = styled.main`
     margin: 0 auto;
     gap: 20px;
     max-width: 1024px;
-    padding: 32px 16px;
+    padding: 32px 1rem;
 
     @media (min-width: 1024px) {
         padding: 32px 0;
@@ -39,7 +39,6 @@ export const Main = styled.main`
             display: flex;
             justify-content: space-between;
             align-items: center;
-
             flex-wrap: wrap;
 
             div {
@@ -82,16 +81,37 @@ export const Main = styled.main`
         }
 
         ol > li {
-            list-style: decimal;
+            counter-increment: li;
+        }
+
+        ol li::before {
+            content: counter(li);
+            color: black;
+            text-align: center;
+            background-color: var(--Color-brand-2);
+            border-radius: 50%;
+            display: inline-flex;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-left: -1.5em;
+            margin-right: 0.5em;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            align-items: center;
+            justify-content: center;
         }
 
         ol {
+            list-style: none;
+            counter-reset: li;
+            gap: 1rem;
             display: flex;
             flex-direction: column;
             padding-left: 20px;
         }
 
         ul {
+            gap: 0.2rem;
             display: flex;
             flex-direction: column;
             padding-left: 20px;
@@ -112,10 +132,7 @@ export const Main = styled.main`
             font-size: 1rem;
         }
 
-        @media screen and (min-width: 443px) {
-            flex-direction: row;
-            gap: 30%;
-
+        @media (min-width: 443px) {
             ol {
                 width: 100%;
             }
@@ -139,30 +156,44 @@ export const Main = styled.main`
 
             .coment {
                 width: 100%;
+
+                .description {
+                    width: 90%;
+                    max-height: 10rem;
+                    overflow: auto;
+
+                    ::-webkit-scrollbar {
+                        width: 10px;
+                        border-radius: 5px;
+                    }
+
+                    ::-webkit-scrollbar-track {
+                        background: transparent;
+                        border-radius: 5px;
+                    }
+
+                    ::-webkit-scrollbar-thumb {
+                        background: var(--Color-brand-1);
+                        border-radius: 5px;
+                    }
+                }
                 p {
                     font-weight: 400;
-                    font-size: 0.9rem;
                 }
 
                 ul {
                     display: flex;
                     flex-direction: column;
-                    gap: 16px;
+                    gap: 1rem;
                 }
             }
             ul > li {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-
                 justify-content: space-between;
-
-                gap: 16px;
-
                 background-color: var(--Color-brand-2);
-
-                padding: 16px;
-
+                padding: 1rem;
+                gap: 1rem;
                 border-radius: 4px;
             }
 
@@ -170,9 +201,21 @@ export const Main = styled.main`
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 16px;
+                gap: 1rem;
+                width: 85%;
+                word-break: break-all;
             }
-            ul > li > div > img {
+
+            .userComment {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.4rem;
+                width: 3rem;
+                position: static;
+            }
+
+            .userComment > img {
                 width: 48px;
                 height: 48px;
                 border-radius: 50%;
@@ -180,8 +223,15 @@ export const Main = styled.main`
                 object-position: center;
             }
 
-            ul > li > p {
-                align-self: flex-end;
+            .btnComment {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .btnComment div {
+                display: flex;
+                gap: 1rem;
             }
         }
         @media (min-width: 600px) {
@@ -191,6 +241,9 @@ export const Main = styled.main`
                 }
                 ul > li > div {
                     flex-direction: row;
+                }
+                .btnComment {
+                    width: 15%;
                 }
             }
         }
@@ -206,7 +259,7 @@ export const Main = styled.main`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 16px;
+        padding: 0 1rem;
 
         cursor: ${({ disabled }: iMainProps) =>
             disabled ? "not-allowed" : "text"};
@@ -217,7 +270,7 @@ export const Main = styled.main`
             resize: none;
             background: none;
             width: 95%;
-            padding-top: 16px;
+            padding-top: 1rem;
             color: var(--Color-gray-3);
             font-family: "Inter", sans-serif;
             cursor: ${({ disabled }: iMainProps) =>

@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { Container, Main } from "./styles";
 import { BiSend } from "react-icons/bi";
-
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper";
 import { Heading2, Heading3, Text2 } from "../../styles/typography";
@@ -15,8 +13,10 @@ import { iRecipe } from "../../contexts/RecipesContext";
 import api from "../../services/api";
 import Loading from "../../components/Loading";
 import avatar from "../../assets/img/avatar.png";
+import { RiEdit2Fill, RiDeleteBin6Fill } from "react-icons/ri";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useCommentContext } from "../../contexts/CommentContext";
 
 interface iRecipeById extends iRecipe {
     comments: {
@@ -24,6 +24,12 @@ interface iRecipeById extends iRecipe {
         description: string;
         createdAt: string;
         updatedAt: string;
+        user: {
+            id: string;
+            name: string;
+            email: string;
+            imageProfile: string;
+        };
     }[];
 }
 
@@ -33,23 +39,34 @@ interface iComment {
 
 const RecipesPage = () => {
     const { user } = useAuthContext();
+    const { setCommentId, deleteComment } = useCommentContext();
     const { recipeId } = useParams();
     const [recipe, setRecipe] = useState<iRecipeById>();
 
-    const months = [
-        "Janeiro",
-        "Fevereiro",
-        "Março",
-        "Abril",
-        "Maio",
-        "Junho",
-        "Julho",
-        "Agosto",
-        "Setembro",
-        "Outubro",
-        "Novembro",
-        "Dezembro",
-    ];
+    function convertMS(ms: number | string) {
+        ms = Date.now() - new Date(ms).getTime();
+
+        let months, weeks, days, hours, minutes, seconds;
+        seconds = Math.floor(ms / 1000);
+        minutes = Math.floor(seconds / 60);
+        seconds = seconds % 60;
+        hours = Math.floor(minutes / 60);
+        minutes = minutes % 60;
+        days = Math.floor(hours / 24);
+        hours = hours % 24;
+        weeks = Math.floor(days / 7);
+        days = days % 7;
+        months = Math.floor(days / 30);
+
+        if (months) return ` há ${months} meses`;
+        if (weeks) return ` há ${weeks} semanas`;
+        if (days) return ` há ${days} dias`;
+        if (hours) return ` há ${hours} horas`;
+        if (minutes) return ` há ${minutes} minutos`;
+        if (seconds) return ` há ${seconds} segundos`;
+
+        return "agora mesmo";
+    }
 
     const {
         register,
@@ -71,7 +88,7 @@ const RecipesPage = () => {
                 }
             );
 
-            setRecipe((prevState) => {
+            setRecipe((prevState: any) => {
                 return {
                     ...prevState!,
                     comments: [
@@ -154,7 +171,7 @@ const RecipesPage = () => {
                                 <div>
                                     <Heading3>Autor:</Heading3>
                                     <img
-                                        src={recipe?.user.imageProfile}
+                                        src={recipe?.user?.imageProfile}
                                         alt="user__image"
                                         onError={imageOnError}
                                     />
@@ -169,7 +186,7 @@ const RecipesPage = () => {
                         <div>
                             <Heading2>Ingredientes</Heading2>
                             <ul>
-                                {recipe?.ingredientsRecipes.map(
+                                {recipe?.ingredientsRecipes?.map(
                                     ({ amount, ingredients, id }) => (
                                         <li key={id}>{`${
                                             amount + " " + ingredients.name
@@ -181,7 +198,7 @@ const RecipesPage = () => {
                         <div>
                             <h2>Modo de preparo</h2>
                             <ol>
-                                {recipe?.preparations.map(
+                                {recipe?.preparations?.map(
                                     (preparation, index) => (
                                         <li key={index}>
                                             {preparation.description}
@@ -196,24 +213,69 @@ const RecipesPage = () => {
                         <div className="comentsContainer">
                             <div className="coment">
                                 <ul>
-                                    {recipe?.comments?.map(
-                                        ({ id, description, updatedAt }) => (
-                                            <li key={id}>
+                                    {recipe?.comments?.map((elem) => {
+                                        return (
+                                            <li key={elem.id}>
                                                 <div>
-                                                    {false ? (
-                                                        <img
-                                                            src={""}
-                                                            alt="user__image"
-                                                        />
-                                                    ) : (
-                                                        <BsPerson size={25} />
-                                                    )}
-                                                    <Text2>{description}</Text2>
+                                                    <div className="userComment">
+                                                        {true ? (
+                                                            <img
+                                                                src={
+                                                                    elem?.user
+                                                                        ?.imageProfile
+                                                                }
+                                                                alt={
+                                                                    "user__image"
+                                                                }
+                                                            />
+                                                        ) : (
+                                                            <BsPerson
+                                                                size={25}
+                                                            />
+                                                        )}
+                                                        <span>
+                                                            {elem?.user?.name}
+                                                        </span>
+                                                    </div>
+                                                    <p className="description">
+                                                        {elem?.description}
+                                                    </p>
                                                 </div>
-                                                <Text2>{updatedAt}</Text2>
+                                                <div className="btnComment">
+                                                    {elem.user.id ===
+                                                    user?.id ? (
+                                                        <div>
+                                                            <RiEdit2Fill
+                                                                cursor={
+                                                                    "pointer"
+                                                                }
+                                                                fontSize={25}
+                                                            />
+
+                                                            <RiDeleteBin6Fill
+                                                                cursor={
+                                                                    "pointer"
+                                                                }
+                                                                onClick={() => {
+                                                                    deleteComment(
+                                                                        elem.id
+                                                                    );
+                                                                }}
+                                                                fontSize={23}
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                    <Text2>
+                                                        {convertMS(
+                                                            elem?.updatedAt
+                                                        )}
+                                                    </Text2>
+                                                </div>
                                             </li>
-                                        )
-                                    )}
+                                        );
+                                    })}
                                 </ul>
                             </div>
                         </div>
