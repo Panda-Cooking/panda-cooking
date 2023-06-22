@@ -39,11 +39,7 @@ const SignUp = () => {
             .email("Email inválido"),
         password: yup
             .string()
-            .required("Senha obrigatória")
-            .matches(
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-                "Deve conter 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um símbolo."
-            ),
+            .required("Senha obrigatória"),
         confirmPassword: yup
             .string()
             .oneOf([yup.ref("password")], "Deve ser idêntica a senha original"),

@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+    createContext,
+    ReactNode,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { iUserLogin } from "../pages/SignIn";
@@ -8,7 +14,6 @@ import api from "../services/api";
 export interface iAuthProviderProps {
     children: ReactNode;
 }
-
 export interface iUser {
     id: string;
     name: string;
@@ -31,6 +36,28 @@ const AuthContextProvider = ({ children }: iAuthProviderProps) => {
     const [user, setUser] = useState<iUser | null>(null);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const autoLogin = () => {
+            const token = localStorage.getItem("@pandaToken");
+
+            if (token) {
+                api.get(`/users/profile`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                    .then((res) => {
+                        setUser(res.data);
+                    })
+                    .catch((error: Error) => {
+                        console.log(error);
+                        localStorage.clear();
+                    });
+            }
+        };
+        autoLogin();
+    }, []);
 
     const loginFunction = async (formLogin: iUserLogin) => {
         try {
@@ -56,6 +83,8 @@ const AuthContextProvider = ({ children }: iAuthProviderProps) => {
 
     const signUpFunction = async (data: iUserRegister) => {
         try {
+            console.log(data);
+
             await api.post("/users", data);
 
             toast.success("conta criada com sucesso!");
