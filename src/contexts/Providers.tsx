@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import AuthContextProvider from "./AuthContext";
 import RecipeProvider from "./RecipesContext";
+import { CommentProvider } from "./CommentContext";
 
 interface iProvidersProps {
     children: ReactNode;
@@ -9,7 +10,9 @@ interface iProvidersProps {
 const Providers = ({ children }: iProvidersProps) => {
     return (
         <AuthContextProvider>
-            <RecipeProvider>{children}</RecipeProvider>
+            <RecipeProvider>
+                <CommentProvider>{children}</CommentProvider>
+            </RecipeProvider>
         </AuthContextProvider>
     );
 };
